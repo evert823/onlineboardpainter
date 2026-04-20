@@ -11,24 +11,46 @@
   <button onclick="sendText()">Send to API</button>
   <p id="text-api-result"></p>
 
-  <script>
-  function sendText() {
-    const text = document.getElementById('user-text').value;
-    fetch('/onlineboardpainter/api/makeboard', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ text: text })
-    })
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('text-api-result').innerText = data.message;
-    })
-    .catch(err => {
-      document.getElementById('text-api-result').innerText = 'Error: ' + err;
-    });
-  }
-  </script>
+<div id="image-section" style="display:none;">
+  <p>Image filename: <span id="image-filename"></span></p>
+  <img id="board-image" src="" alt="Board image" style="max-width:400px; display:block; margin-bottom:10px;">
+  <a id="download-link" href="#" download style="display:inline-block;">
+    <button id="download-btn" type="button">Download Image</button>
+  </a>
+</div>
+
+<script>
+let currentImageFile = "";
+
+function sendText() {
+  const text = document.getElementById('user-text').value;
+  fetch('/onlineboardpainter/api/makeboard', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ text: text })
+  })
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('text-api-result').innerText = data.message;
+    if (data.image_file) {
+      currentImageFile = data.image_file;
+      document.getElementById('image-filename').innerText = data.image_file;
+      const imageUrl = `/onlineboardpainter/api/image/${data.image_file}`;
+      document.getElementById('board-image').src = imageUrl;
+      document.getElementById('download-link').href = imageUrl;
+      document.getElementById('download-link').setAttribute('download', data.image_file);
+      document.getElementById('image-section').style.display = 'block';
+    } else {
+      document.getElementById('image-section').style.display = 'none';
+    }
+  })
+  .catch(err => {
+    document.getElementById('text-api-result').innerText = 'Error: ' + err;
+    document.getElementById('image-section').style.display = 'none';
+  });
+}
+</script>
 </body>
 </html>
