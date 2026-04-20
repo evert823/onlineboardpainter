@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online board painter</title>
+</head>
+<body>
+  <h1>Online boardpainter tool for chess variants</h1>
+
+  <h2>Paste or type your text below:</h2>
+  <textarea id="user-text" rows="15" cols="60" placeholder="Paste or type your text here"></textarea><br>
+  <button onclick="sendText()">Send to API</button>
+  <p id="text-api-result"></p>
+
+  <script>
+  function sendText() {
+    const text = document.getElementById('user-text').value;
+    fetch('/onlineboardpainter/api/makeboard', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ text: text })
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('text-api-result').innerText = data.message;
+    })
+    .catch(err => {
+      document.getElementById('text-api-result').innerText = 'Error: ' + err;
+    });
+  }
+  </script>
+</body>
+</html>
