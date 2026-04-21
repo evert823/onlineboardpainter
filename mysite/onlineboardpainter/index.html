@@ -16,6 +16,16 @@
   <button id="send-btn" onclick="sendText()" disabled>Send to API</button>
   <p id="text-api-result"></p>
 
+  <label>
+    <input type="radio" name="theme" value="classicwood" id="theme-classicwood" checked>
+    Classic wood
+  </label>
+  <label>
+    <input type="radio" name="theme" value="green" id="theme-green">
+    Green (Bulldog classic style)
+  </label>
+  <br>
+
   <div id="image-section" style="display:none;">
     <p>Image filename: <span id="image-filename"></span></p>
     <img id="board-image" src="" alt="Board image" style="max-width:400px; display:block; margin-bottom:10px;">
@@ -62,12 +72,14 @@ function sendText() {
     return;
   }
   const text = document.getElementById('user-text').value;
+  // Get selected theme
+  const theme = document.querySelector('input[name="theme"]:checked').value;
   fetch('/onlineboardpainter/api/makeboard', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ text: text })
+    body: JSON.stringify({ text: text, theme: theme })
   })
   .then(response => response.json())
   .then(data => {
@@ -89,6 +101,7 @@ function sendText() {
     document.getElementById('image-section').style.display = 'none';
   });
 }
+
 </script>
 </body>
 </html>
