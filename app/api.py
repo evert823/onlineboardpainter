@@ -1,7 +1,9 @@
 from fastapi import APIRouter
 from app.models.boardpainter_input import BoardPainterInput
+from app.models.chuboardpainter_input import ChuBoardPainterInput
 from app.models.text_input import TextInput
 from app.services.makeboard import process_text
+from app.services.makechuboard import process_text4chu
 from app.services.authenticate import verify_test_text
 from fastapi.responses import FileResponse
 import os
@@ -15,6 +17,14 @@ def hello():
 @router.post("/onlineboardpainter/api/makeboard")
 def receive_text(input: BoardPainterInput):
     return process_text(input)
+
+@router.get("/onlineboardpainter/api/makechuboard")
+def hello():
+    return {"message": "Hello from FastAPI!"}
+
+@router.post("/onlineboardpainter/api/makechuboard")
+def receive_text(input: ChuBoardPainterInput):
+    return process_text4chu(input)
 
 @router.post("/onlineboardpainter/api/authenticate")
 def receive_text(input: TextInput):

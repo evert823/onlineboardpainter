@@ -13,4 +13,4 @@ html --> A-record --> Linux VPS --> Apache --> FastAPI
 
 # dependencies on other repositories
 https://github.com/evert823/chess_variant_boardpainter --> /home/administrator/chess_variant_boardpainter/
-
+https://github.com/evert823/chu_shogi_piece_images --> /home/administrator/chess_variant_boardpainter/

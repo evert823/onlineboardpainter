@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online board painter</title>
+</head>
+<body>
+  <h1>Online boardpainter tool for Chu Shogi and large Shogi variants</h1>
+
+  <h2>Authenticate here:</h2>
+  <textarea id="user-or-bot" rows="2" cols="60" placeholder="Authenticate here"></textarea><br>
+  <button id="auth-btn" onclick="authenticateUser()">Authenticate</button>
+  <p id="auth-result"></p>
+
+  <h2>Paste or type your text below:</h2>
+  <textarea id="user-text" rows="15" cols="60" placeholder="Paste or type your text here"></textarea><br>
+  <button id="send-btn" onclick="sendText()" disabled>Send to API</button>
+  <p id="text-api-result"></p>
+
+  <label>
+    <input type="radio" name="theme" value="set1" id="theme-set1">
+    one kanji
+  </label>
+  <label>
+    <input type="radio" name="theme" value="set2" id="theme-set2" checked>
+    two kanji
+  </label>
+  <br>
+
+  <div id="image-section" style="display:none;">
+    <p>Image filename: <span id="image-filename"></span></p>
+    <img id="board-image" src="" alt="Board image" style="max-width:400px; display:block; margin-bottom:10px;">
+    <a id="download-link" href="#" download style="display:inline-block;">
+      <button id="download-btn" type="button">Download Image</button>
+    </a>
+  </div>
+
+<script>
+let currentImageFile = "";
+let isAuthenticated = false;
+
+function authenticateUser() {
+  const userOrBot = document.getElementById('user-or-bot').value;
+  fetch('/onlineboardpainter/api/authenticate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ text: userOrBot })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      isAuthenticated = true;
+      document.getElementById('auth-result').innerText = data.message || 'Authenticated!';
+      document.getElementById('send-btn').disabled = false;
+    } else {
+      isAuthenticated = false;
+      document.getElementById('auth-result').innerText = data.message || 'Authentication failed.';
+      document.getElementById('send-btn').disabled = true;
+    }
+  })
+  .catch(err => {
+    isAuthenticated = false;
+    document.getElementById('auth-result').innerText = 'Error: ' + err;
+    document.getElementById('send-btn').disabled = true;
+  });
+}
+
+function sendText() {
+  if (!isAuthenticated) {
+    document.getElementById('text-api-result').innerText = 'You must authenticate first.';
+    return;
+  }
+  const text = document.getElementById('user-text').value;
+  // Get selected theme
+  const theme = document.querySelector('input[name="theme"]:checked').value;
+  fetch('/onlineboardpainter/api/makechuboard', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ text: text, theme: theme })
+  })
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('text-api-result').innerText = data.message;
+    if (data.image_file) {
+      currentImageFile = data.image_file;
+      document.getElementById('image-filename').innerText = data.image_file;
+      const imageUrl = `/onlineboardpainter/api/image/${data.image_file}`;
+      document.getElementById('board-image').src = imageUrl;
+      document.getElementById('download-link').href = imageUrl;
+      document.getElementById('download-link').setAttribute('download', data.image_file);
+      document.getElementById('image-section').style.display = 'block';
+    } else {
+      document.getElementById('image-section').style.display = 'none';
+    }
+  })
+  .catch(err => {
+    document.getElementById('text-api-result').innerText = 'Error: ' + err;
+    document.getElementById('image-section').style.display = 'none';
+  });
+}
+
+</script>
+</body>
+</html>
