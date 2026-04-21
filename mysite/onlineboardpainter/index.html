@@ -6,6 +6,11 @@
 <body>
   <h1>Online boardpainter tool for chess variants</h1>
 
+  <h2>Authenticate here:</h2>
+  <textarea id="user-or-bot" rows="2" cols="60" placeholder="Authenticate here"></textarea><br>
+  <button id="auth-btn" onclick="authenticateUser()">Authenticate</button>
+  <p id="auth-result"></p>
+
   <h2>Paste or type your text below:</h2>
   <textarea id="user-text" rows="15" cols="60" placeholder="Paste or type your text here"></textarea><br>
   <button onclick="sendText()">Send to API</button>
@@ -21,6 +26,30 @@
 
 <script>
 let currentImageFile = "";
+
+function authenticateUser() {
+  const userOrBot = document.getElementById('user-or-bot').value;
+  fetch('/onlineboardpainter/api/authenticate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ text: userOrBot })
+  })
+  .then(response => response.json())
+.then(data => {
+  if (data.success) {
+    document.getElementById('auth-result').innerText = data.message || 'Authenticated!';
+  } else {
+    document.getElementById('auth-result').innerText = data.message || 'Authentication failed.';
+  }
+})
+  .catch(err => {
+    document.getElementById('auth-result').innerText = 'Error: ' + err;
+  });
+}
+
+
 
 function sendText() {
   const text = document.getElementById('user-text').value;

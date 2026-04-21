@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from app.models.text_input import TextInput
 from app.services.makeboard import process_text
+from app.services.authenticate import verify_test_text
 from fastapi.responses import FileResponse
 import os
 
@@ -13,6 +14,10 @@ def hello():
 @router.post("/onlineboardpainter/api/makeboard")
 def receive_text(input: TextInput):
     return process_text(input)
+
+@router.post("/onlineboardpainter/api/authenticate")
+def receive_text(input: TextInput):
+    return verify_test_text(input)
 
 @router.get("/onlineboardpainter/api/image/{image_file}")
 def get_image(image_file: str):
