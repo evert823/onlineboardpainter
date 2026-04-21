@@ -10,3 +10,7 @@ html --> A-record --> Linux VPS --> Apache --> FastAPI
 # Deploy to locations
 - python files --> /home/administrator/onlineboardpainter/
 - html mysite\onlineboardpainter --> /var/www/dev/mysite/onlineboardpainter/
+
+# dependencies on other repositories
+https://github.com/evert823/chess_variant_boardpainter --> /home/administrator/chess_variant_boardpainter/
+
