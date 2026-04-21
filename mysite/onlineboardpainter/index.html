@@ -13,19 +13,20 @@
 
   <h2>Paste or type your text below:</h2>
   <textarea id="user-text" rows="15" cols="60" placeholder="Paste or type your text here"></textarea><br>
-  <button onclick="sendText()">Send to API</button>
+  <button id="send-btn" onclick="sendText()" disabled>Send to API</button>
   <p id="text-api-result"></p>
 
-<div id="image-section" style="display:none;">
-  <p>Image filename: <span id="image-filename"></span></p>
-  <img id="board-image" src="" alt="Board image" style="max-width:400px; display:block; margin-bottom:10px;">
-  <a id="download-link" href="#" download style="display:inline-block;">
-    <button id="download-btn" type="button">Download Image</button>
-  </a>
-</div>
+  <div id="image-section" style="display:none;">
+    <p>Image filename: <span id="image-filename"></span></p>
+    <img id="board-image" src="" alt="Board image" style="max-width:400px; display:block; margin-bottom:10px;">
+    <a id="download-link" href="#" download style="display:inline-block;">
+      <button id="download-btn" type="button">Download Image</button>
+    </a>
+  </div>
 
 <script>
 let currentImageFile = "";
+let isAuthenticated = false;
 
 function authenticateUser() {
   const userOrBot = document.getElementById('user-or-bot').value;
@@ -37,21 +38,29 @@ function authenticateUser() {
     body: JSON.stringify({ text: userOrBot })
   })
   .then(response => response.json())
-.then(data => {
-  if (data.success) {
-    document.getElementById('auth-result').innerText = data.message || 'Authenticated!';
-  } else {
-    document.getElementById('auth-result').innerText = data.message || 'Authentication failed.';
-  }
-})
+  .then(data => {
+    if (data.success) {
+      isAuthenticated = true;
+      document.getElementById('auth-result').innerText = data.message || 'Authenticated!';
+      document.getElementById('send-btn').disabled = false;
+    } else {
+      isAuthenticated = false;
+      document.getElementById('auth-result').innerText = data.message || 'Authentication failed.';
+      document.getElementById('send-btn').disabled = true;
+    }
+  })
   .catch(err => {
+    isAuthenticated = false;
     document.getElementById('auth-result').innerText = 'Error: ' + err;
+    document.getElementById('send-btn').disabled = true;
   });
 }
 
-
-
 function sendText() {
+  if (!isAuthenticated) {
+    document.getElementById('text-api-result').innerText = 'You must authenticate first.';
+    return;
+  }
   const text = document.getElementById('user-text').value;
   fetch('/onlineboardpainter/api/makeboard', {
     method: 'POST',
