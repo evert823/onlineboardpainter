@@ -14,3 +14,10 @@ html --> A-record --> Linux VPS --> Apache --> FastAPI
 # dependencies on other repositories
 https://github.com/evert823/chess_variant_boardpainter --> /home/administrator/chess_variant_boardpainter/
 https://github.com/evert823/chu_shogi_piece_images --> /home/administrator/chu_shogi_piece_images/
+
+# clean script in crontab
+chmod +x /home/administrator/onlineboardpainter/scripts/clean_useroutput.sh
+crontab -e
+lets you choose the editor
+0 2 * * * /home/administrator/onlineboardpainter/scripts/clean_useroutput.sh
+crontab -l
