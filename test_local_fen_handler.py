@@ -32,9 +32,75 @@ def json_input_testcase():
         " .| .| .| .| .| p|-Q|-N",
         " .| .| .| .| B| .| .| .",
         " p| p| p| .| .| Q| p| .",
-        " .| .| .| R|BT| K| .| ."
+        " .| .| .| R| R| K| .| ."
     ]
     }
+    '''
+    return myjsontext
+
+def json_input_testcase2():
+    myjsontext = '''
+        {
+            "boardwidth": 16,
+            "boardheight": 16,
+            "colourtomove": 1,
+                "squares": [
+                " -R|  .|-Kr|-Tb| -B|  .|  .| -Q| -K|  .|-Bf| -B|  .|-Kr|  .| -R",
+                " -p| -p| -p| -p| -p|  .|  .| -A|  .| -p| -p| -p| -p| -p| -p| -p",
+                "  .|  .| -N|  .|  .|  .|  .| -p|  .|  .|  .|  .|  .|  .|  .|  .",
+                "  .|  .|-NN|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+                "  .|  .|  .|  .|  .|  .|  .|  .|-Tb|  .|  .|  .| -N|  .|  .|  .",
+                "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+                "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+                "  .|  .|  .|  .|  .|  .|  .|  p|  .|  .|  .|  .|  .|  .|  .|  .",
+                "  .|  .|  .|  .|  .|  .|  .|  p|  .|  .|  p|  .|  .|  .|  .|  .",
+                "  .|  .|  .|  .|  .|  p|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+                "  .|  .|  .|  .|  .|  .|  B|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+                "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+                "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+                "  .|  .|  N|  .|  .|  .|  .|  A|  .|  .|  C|  .|  .|  .|  .|  .",
+                "  p|  p|  p|  p|  p|  .|  .|  .|  .|  p|  .|  p|  p|  p|  p|  p",
+                "  R|  .| Kr| Tb|  B|  .|  .|  Q|  K|  .| Bf|  .| Tb| Kr|  N|  R"
+            ]
+        }
+    '''
+    return myjsontext
+
+def json_input_testcase3():
+    myjsontext = '''
+
+    {
+        "boardwidth": 30,
+        "boardheight": 24,
+        "colourtomove": 1,
+        "squares": [
+            " -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R",
+            " -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p",
+            "  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R",
+            " -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R",
+            " -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p",
+            "  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R",
+            " -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R",
+            " -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
+            "  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p",
+            "  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R"
+        ]
+    }
+
     '''
     return myjsontext
 
@@ -79,29 +145,17 @@ fen5 = "[l][fl][c][s][g][de][k][g][s][c][fl][l]/[rc]1[b]1[bt][ph][kr][bt]1[b]1[r
 fen5 += "12/3[GB]4[GB]3/[P][P][P][P][P][P][P][P][P][P][P][P]/[SM][VM][R][DH][DK][Q][LN][DK][DH][R][VM][SM]/[RC]1[B]1[BT][PH][KR][BT]1[B]1[RC]/[L][FL][C][S][G][DE][K][G][S][C][FL][L] w"
 
 #We pick a location and filename for the piecedefinitions.csv
-myFENHandler = FENHandler(piecedefinitions_loc=chushogipiecedefinitions_loc())
-#myFENHandler = FENHandler(piecedefinitions_loc=piecedefinitions_loc())
+#myFENHandler = FENHandler(piecedefinitions_loc=chushogipiecedefinitions_loc())
+myFENHandler = FENHandler(piecedefinitions_loc=piecedefinitions_loc())
 
 #We load the piecedefinitions.csv
 myFENHandler.load_piece_definitions()
 
 test_parse_one_rank()
 
-rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen0)
-print(rc)
-print(myjson)
-rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen1)
-print(rc)
-print(myjson)
-rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen2)
-print(rc)
-print(myjson)
-rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen3)
-print(rc)
-print(myjson)
-rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen4)
-print(rc)
-print(myjson)
-
-a = myFENHandler.convert_JSON_to_fen(jsontext=json_input_testcase())
+myFENHandler.pieceID_separation_strategy = "squarebracket"
+a = myFENHandler.convert_JSON_to_fen(jsontext=json_input_testcase3())
 print(a)
+rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=a)
+print(rc)
+print(myjson)
