@@ -61,7 +61,14 @@ def testcase_FEN(filename):
     myjson = json.load(file1)
     myjsontext = json.dumps(myjson, indent=4)
     file1.close()
+
     myfen = myFENHandler.convert_JSON_to_fen(jsontext=myjsontext)
+
+    a = myFENHandler.detect_JSON(inputtext=myjsontext)
+    print(f"JSON detection result {a}")
+    a = myFENHandler.detect_JSON(inputtext=myfen)
+    print(f"JSON detection result {a}")
+
     rc, myjson2 = myFENHandler.convert_fen_to_JSON(fentext=myfen)
     assert rc == 0
 

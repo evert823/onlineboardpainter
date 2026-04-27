@@ -274,3 +274,12 @@ class FENHandler:
             positiondict["squares"].append(myvisualrank)
 
         return json.dumps(positiondict, indent=4)
+
+    def detect_JSON(self, inputtext):
+        try:
+            mydict = json.loads(inputtext)
+        except:
+            return False
+        if "boardwidth" in mydict:
+            return True
+        return False
