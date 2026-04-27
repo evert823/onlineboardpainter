@@ -18,6 +18,27 @@ def chushogipiecedefinitions_loc():
                      "piecedefinitions", "chushogipiecedefinitions.csv")
     return s
 
+def json_input_testcase():
+    myjsontext = '''
+    {
+    "boardwidth": 8,
+    "boardheight": 8,
+    "colourtomove": -1,
+    "squares": [
+        "-R| .| .| .| .|-R|-K| .",
+        " .| .| .| .| .|-p|-p|-p",
+        "-p| .|-B| N|-p| .| .| .",
+        " .|-p| .| .| p| .| .| .",
+        " .| .| .| .| .| p|-Q|-N",
+        " .| .| .| .| B| .| .| .",
+        " p| p| p| .| .| Q| p| .",
+        " .| .| .| R|BT| K| .| ."
+    ]
+    }
+    '''
+    return myjsontext
+
+
 def test_parse_one_rank():
     a = myFENHandler.parse_one_rank("rnb3qkbnr")
     assert a == ['r', 'n', 'b', '', '', '', 'q', 'k', 'b', 'n', 'r']
@@ -66,7 +87,21 @@ myFENHandler.load_piece_definitions()
 
 test_parse_one_rank()
 
-print(fen5)
-rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen5)
+rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen0)
 print(rc)
 print(myjson)
+rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen1)
+print(rc)
+print(myjson)
+rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen2)
+print(rc)
+print(myjson)
+rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen3)
+print(rc)
+print(myjson)
+rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=fen4)
+print(rc)
+print(myjson)
+
+a = myFENHandler.convert_JSON_to_fen(jsontext=json_input_testcase())
+print(a)

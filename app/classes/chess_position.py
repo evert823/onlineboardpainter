@@ -24,6 +24,15 @@ class ChessPosition:
         positionfile = open(pfilename, 'r')
         positiondict = json.load(positionfile)
         positionfile.close()
+        self.load_from_dict(positiondict=positiondict)
+
+    def load_from_jsontext(self, jsontext):
+        #Load from json file and convert to class structure
+        positiondict = json.loads(jsontext)
+        self.load_from_dict(positiondict=positiondict)
+
+    def load_from_dict(self, positiondict):
+        #Load from json file and convert to class structure
         self.boardwidth = positiondict["boardwidth"]
         self.boardheight = positiondict["boardheight"]
         self.reset_boardsize(self.boardwidth, self.boardheight)

@@ -13,6 +13,9 @@ class FENHandler:
         self.fen_eptargetsquare = ""
         self.fen_halfmoveclock = ""
         self.fen_fullmovenumber = ""
+        self.special_nonalf = ["'", '`', '"', '~', '^', '!', ':']
+        #self.pieceID_separation_strategy = "comma"
+        self.pieceID_separation_strategy = "squarebracket"
 
     def load_piece_definitions(self):
         self.MyPieceNameHandler.load_piece_definitions(filename=self.piecedefinitions_loc)
@@ -21,14 +24,81 @@ class FENHandler:
         mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol(".")
         assert mytest == ""
 
+    def convert_JSON_to_fen(self, jsontext):
+        self.MyChessPosition.load_from_jsontext(jsontext=jsontext)
+        problematic_pieceIDs_found = self.has_problematic_pieceIDs()
+        fenparts = []
+        for j in range(self.MyChessPosition.boardheight):
+            rj = (self.MyChessPosition.boardheight - 1) - j
+            vacantcount = 0
+            fenpart = ""
+            for i in range(self.MyChessPosition.boardwidth):
+                if self.MyChessPosition.squares[rj][i] != '.':
+                    if vacantcount != 0:
+                        fenpart += str(vacantcount)
+                        if problematic_pieceIDs_found == True and self.pieceID_separation_strategy == "comma":
+                            fenpart += ","
+                        vacantcount = 0
+                    mysymbol = self.pieceID_for_fen(self.MyChessPosition.squares[rj][i])
+                    if problematic_pieceIDs_found == True and self.pieceID_separation_strategy == "squarebracket":
+                        fenpart += f"[{mysymbol}]"
+                    else:
+                        fenpart += mysymbol
+                    if problematic_pieceIDs_found == True and self.pieceID_separation_strategy == "comma":
+                        fenpart += ","
+                if self.MyChessPosition.squares[rj][i] == '.':
+                    vacantcount += 1
+            if vacantcount != 0:
+                fenpart += str(vacantcount)
+                if problematic_pieceIDs_found == True and self.pieceID_separation_strategy == "comma":
+                    fenpart += ","
+            if fenpart.endswith(","):
+                fenpart = fenpart[:-1]
+            fenparts.append(fenpart)
+        fen = "/".join(fenparts)
+        fen += " w"
+        return fen
+
+
+    def has_problematic_pieceIDs(self):
+        found = False
+        for j in range(self.MyChessPosition.boardheight):
+            for i in range(self.MyChessPosition.boardwidth):
+                mysymbol = self.MyChessPosition.squares[j][i]
+                if mysymbol.startswith('-'):
+                     mysymbol = mysymbol[1:]
+
+                if len(mysymbol) == 1:
+                    pass
+                elif (mysymbol[0].isalpha() == True and mysymbol[1] in self.special_nonalf
+                           and len(mysymbol) < 3):
+                    pass
+                else:
+                    found = True
+        return found
+
+    def pieceID_for_fen(self, symbol):
+        if symbol.startswith('-'):
+            return symbol[1:].lower()
+        else:
+            return symbol.upper()
+
     def convert_fen_to_JSON(self, fentext):
         try:
             self.decompose_fen_1(fentext=fentext)
         except Exception as e:
             return 1, str(e)
 
-        self.handle_pieceplacements()
-        myjson = self.create_JSON()
+        try:
+            self.handle_pieceplacements()
+        except Exception as e:
+            return 1, str(e)
+
+        try:
+            myjson = self.create_JSON()
+        except Exception as e:
+            return 1, str(e)
+
         return 0, myjson
 
     def decompose_fen_1(self, fentext):
@@ -110,7 +180,6 @@ class FENHandler:
         pieces = []
         i = 0
         n = len(fenrank)
-        special_nonalf = ["'", '`', '"', '~', '^', '!', ':']
 
         while i < n:
             c = fenrank[i]
@@ -165,7 +234,7 @@ class FENHandler:
                 continue
 
             # Handle letter + special nonalf as one piece
-            if c.isalpha() and i + 1 < n and fenrank[i+1] in special_nonalf:
+            if c.isalpha() and i + 1 < n and fenrank[i+1] in self.special_nonalf:
                 pieces.append(c + fenrank[i+1])
                 i += 2
                 continue
