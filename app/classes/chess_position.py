@@ -4,6 +4,7 @@ class ChessPosition:
     def __init__(self):
         self.boardwidth = -1
         self.boardheight = -1
+        self.colourtomove = 1
         self.squares = []
         self.terrain = []
         self.reset_boardsize(0, 0)
@@ -42,6 +43,9 @@ class ChessPosition:
             for i in range(self.boardwidth):
                 s = mysymbol[i].lstrip()
                 self.squares[j][i] = s
+
+        if "colourtomove" in positiondict:
+            self.colourtomove = positiondict["colourtomove"]
 
         # Parse terrain if present
         if "terrain" in positiondict:

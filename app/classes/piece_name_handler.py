@@ -5,6 +5,8 @@ class PieceNameHandler:
     def load_piece_definitions(self, filename="/home/administrator/chess_variant_boardpainter/piecedefinitions/piecedefinitions.csv"):
         File1 = open(filename, 'r')
         Lines = File1.readlines()
+        File1.close()
+        self.piecedict = {"piecedefinitions" : []}
         for line in Lines:
             if line[:21] != "piecesymbol,piecename":
                 a = line.replace("\n", "").split(",")

@@ -56,7 +56,10 @@ class FENHandler:
                 fenpart = fenpart[:-1]
             fenparts.append(fenpart)
         fen = "/".join(fenparts)
-        fen += " w"
+        if self.MyChessPosition.colourtomove == 1:
+           fen += " w"
+        else:
+           fen += " b"
         return fen
 
 
@@ -170,7 +173,7 @@ class FENHandler:
         A number represents the same amount of subsequent empty squares
         Piece IDs may be enclosed in square brackets OR they may be separated by comma's (max 2 chars per ID)
         A letter followed by a nonalf represents one piece
-          (if the nonalf is in ["'", '`', '"', '~', '^', '!', ':'])
+          (if the nonalf is in self.special_nonalf)
         Examples:
         rn^n5b~b1qkbr~nn^r
         r,ln,kn,gb,3q,r,n

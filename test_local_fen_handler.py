@@ -4,6 +4,7 @@ Without FastAPI
 '''
 from app.classes.fen_handler import FENHandler
 import os
+import json
 
 def piecedefinitions_loc():
     s = os.path.join("C:\\", "Users", "Evert Jan", "Documents",
@@ -17,92 +18,6 @@ def chushogipiecedefinitions_loc():
                      "GitHub", "chess_variant_boardpainter", "shogi_variants",
                      "piecedefinitions", "chushogipiecedefinitions.csv")
     return s
-
-def json_input_testcase():
-    myjsontext = '''
-    {
-    "boardwidth": 8,
-    "boardheight": 8,
-    "colourtomove": -1,
-    "squares": [
-        "-R| .| .| .| .|-R|-K| .",
-        " .| .| .| .| .|-p|-p|-p",
-        "-p| .|-B| N|-p| .| .| .",
-        " .|-p| .| .| p| .| .| .",
-        " .| .| .| .| .| p|-Q|-N",
-        " .| .| .| .| B| .| .| .",
-        " p| p| p| .| .| Q| p| .",
-        " .| .| .| R| R| K| .| ."
-    ]
-    }
-    '''
-    return myjsontext
-
-def json_input_testcase2():
-    myjsontext = '''
-        {
-            "boardwidth": 16,
-            "boardheight": 16,
-            "colourtomove": 1,
-                "squares": [
-                " -R|  .|-Kr|-Tb| -B|  .|  .| -Q| -K|  .|-Bf| -B|  .|-Kr|  .| -R",
-                " -p| -p| -p| -p| -p|  .|  .| -A|  .| -p| -p| -p| -p| -p| -p| -p",
-                "  .|  .| -N|  .|  .|  .|  .| -p|  .|  .|  .|  .|  .|  .|  .|  .",
-                "  .|  .|-NN|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-                "  .|  .|  .|  .|  .|  .|  .|  .|-Tb|  .|  .|  .| -N|  .|  .|  .",
-                "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-                "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-                "  .|  .|  .|  .|  .|  .|  .|  p|  .|  .|  .|  .|  .|  .|  .|  .",
-                "  .|  .|  .|  .|  .|  .|  .|  p|  .|  .|  p|  .|  .|  .|  .|  .",
-                "  .|  .|  .|  .|  .|  p|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-                "  .|  .|  .|  .|  .|  .|  B|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-                "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-                "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-                "  .|  .|  N|  .|  .|  .|  .|  A|  .|  .|  C|  .|  .|  .|  .|  .",
-                "  p|  p|  p|  p|  p|  .|  .|  .|  .|  p|  .|  p|  p|  p|  p|  p",
-                "  R|  .| Kr| Tb|  B|  .|  .|  Q|  K|  .| Bf|  .| Tb| Kr|  N|  R"
-            ]
-        }
-    '''
-    return myjsontext
-
-def json_input_testcase3():
-    myjsontext = '''
-
-    {
-        "boardwidth": 30,
-        "boardheight": 24,
-        "colourtomove": 1,
-        "squares": [
-            " -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R",
-            " -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p",
-            "  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R",
-            " -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R",
-            " -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p",
-            "  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R",
-            " -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R| -R| -G| -N| -B| -K| -Q| -B| -N|-B~| -R",
-            " -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p| -p",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
-            "  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p|  p",
-            "  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R|  R| B~|  N|  B|  Q|  K|  B|  N|  G|  R"
-        ]
-    }
-
-    '''
-    return myjsontext
 
 
 def test_parse_one_rank():
@@ -135,6 +50,29 @@ def test_parse_one_rank():
                 '', '', '', '', '', '', '', '', '', '', '', '',
                 'fg', 'H7', 'IJ', 'b~', 'b', 'q', 'k']
 
+def testcase_FEN(filename):
+    testcasespath = os.path.join("C:\\", "Users", "Evert Jan", "pythonprojects",
+                     "chesspython_nogithub", "positions", "testcases_fen",
+                     filename)
+    testcasespathcheck = os.path.join("C:\\", "Users", "Evert Jan", "pythonprojects",
+                     "chesspython_nogithub", "positions", "testcases_fen",
+                     "check", filename)
+    file1 = open(testcasespath, 'r')
+    myjson = json.load(file1)
+    myjsontext = json.dumps(myjson, indent=4)
+    file1.close()
+    myfen = myFENHandler.convert_JSON_to_fen(jsontext=myjsontext)
+    rc, myjson2 = myFENHandler.convert_fen_to_JSON(fentext=myfen)
+    assert rc == 0
+
+    file2 = open(testcasespathcheck, 'w', encoding='utf-8')
+    file2.write(myjson2)
+    file2.close()
+
+    print(filename)
+    print(myfen)
+    return myjsontext
+
 fen0 = '{ "mypiece": "King"}'
 fen1 = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 fen2 = "4k2r/8/8/8/1Pp5/8/8/5K2 b k b3 0 1"
@@ -145,17 +83,28 @@ fen5 = "[l][fl][c][s][g][de][k][g][s][c][fl][l]/[rc]1[b]1[bt][ph][kr][bt]1[b]1[r
 fen5 += "12/3[GB]4[GB]3/[P][P][P][P][P][P][P][P][P][P][P][P]/[SM][VM][R][DH][DK][Q][LN][DK][DH][R][VM][SM]/[RC]1[B]1[BT][PH][KR][BT]1[B]1[RC]/[L][FL][C][S][G][DE][K][G][S][C][FL][L] w"
 
 #We pick a location and filename for the piecedefinitions.csv
-#myFENHandler = FENHandler(piecedefinitions_loc=chushogipiecedefinitions_loc())
-myFENHandler = FENHandler(piecedefinitions_loc=piecedefinitions_loc())
 
 #We load the piecedefinitions.csv
-myFENHandler.load_piece_definitions()
 
+myFENHandler = FENHandler(piecedefinitions_loc=piecedefinitions_loc())
+myFENHandler.load_piece_definitions()
 test_parse_one_rank()
 
+#a = myFENHandler.convert_JSON_to_fen(jsontext=json_input_testcase3())
+#rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=a)
+
+myjson = testcase_FEN(filename="testcase_FEN_chess_01_simple.json")
+myjson = testcase_FEN(filename="testcase_FEN_chess_02_simple_special_nonalf.json")
+myFENHandler.pieceID_separation_strategy = "comma"
+myjson = testcase_FEN(filename="testcase_FEN_chess_03_comma.json")
 myFENHandler.pieceID_separation_strategy = "squarebracket"
-a = myFENHandler.convert_JSON_to_fen(jsontext=json_input_testcase3())
-print(a)
-rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=a)
-print(rc)
-print(myjson)
+myjson = testcase_FEN(filename="testcase_FEN_chess_04_squarebrackets.json")
+del myFENHandler
+myFENHandler = FENHandler(piecedefinitions_loc=chushogipiecedefinitions_loc())
+myFENHandler.load_piece_definitions()
+myjson = testcase_FEN(filename="testcase_FEN_chu_01_simple.json")
+myjson = testcase_FEN(filename="testcase_FEN_chu_02_simple_special_nonalf.json")
+myFENHandler.pieceID_separation_strategy = "comma"
+myjson = testcase_FEN(filename="testcase_FEN_chu_03_comma.json")
+myFENHandler.pieceID_separation_strategy = "squarebracket"
+myjson = testcase_FEN(filename="testcase_FEN_chu_04_squarebrackets.json")
