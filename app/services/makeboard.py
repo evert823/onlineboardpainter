@@ -8,6 +8,8 @@ def process_text(input: BoardPainterInput):
     # Your logic here
 
     fenh = FENHandler(piecedefinitions_loc="/home/administrator/chess_variant_boardpainter/piecedefinitions/piecedefinitions.csv")
+    fenh.load_piece_definitions()
+
     myjsontext = input.text
     a = fenh.detect_JSON(inputtext=input.text)
     if a == False:
