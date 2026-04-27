@@ -54,5 +54,4 @@ class ChessPosition:
 
     def print_squares(self):
         for j in range(self.boardheight):
-            for i in range(self.boardwidth):
-                print(self.squares[j][i])
+            print(self.squares[j])
