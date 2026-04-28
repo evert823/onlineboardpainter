@@ -10,6 +10,25 @@
         label { font-weight: bold; }
         .container { max-width: 700px; margin: auto; }
         .row { margin-bottom: 20px; }
+        .copy-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0 8px;
+            height: 28px;
+        }
+        .copy-feedback {
+            display: none;
+            color: green;
+            font-size: 0.9em;
+            margin-left: 5px;
+        }
+        .output-row {
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -44,8 +63,16 @@
             <div class="row">
                 <button type="button" onclick="convert()">Convert</button>
             </div>
-            <div class="row">
+            <div class="row output-row">
                 <label for="outputText" id="outputLabel">Output (JSON):</label>
+                <button type="button" id="copyBtn" class="copy-btn" title="Copy to clipboard">
+                    <!-- SVG copy icon -->
+                    <svg id="copyIcon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20" style="vertical-align:middle;">
+                        <rect x="6" y="6" width="9" height="9" rx="2" fill="#888"/>
+                        <rect x="3" y="3" width="9" height="9" rx="2" fill="none" stroke="#888" stroke-width="1.5"/>
+                    </svg>
+                </button>
+                <span id="copyFeedback" class="copy-feedback">Copied!</span>
                 <textarea id="outputText" name="outputText" readonly></textarea>
             </div>
             <div class="row">
@@ -108,6 +135,16 @@
                 document.getElementById('message').textContent = 'Error contacting server.';
             }
         }
+
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const output = document.getElementById('outputText');
+            if (!output.value) return;
+            navigator.clipboard.writeText(output.value).then(() => {
+                const feedback = document.getElementById('copyFeedback');
+                feedback.style.display = 'inline';
+                setTimeout(() => { feedback.style.display = 'none'; }, 1200);
+            });
+        });
     </script>
 </body>
 </html>
