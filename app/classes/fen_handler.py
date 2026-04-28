@@ -186,6 +186,20 @@ class FENHandler:
 
         while i < n:
             c = fenrank[i]
+            # Handle rank starting with pieceID 8u
+            if i == 0 and len(fenrank) > 2 and fenrank[2] == ',':
+                # Look ahead for up to 2 chars
+                token = ''
+                j = i
+                while j < n and len(token) < 2 and fenrank[j] not in [',', '[']:
+                    token += fenrank[j]
+                    j += 1
+                if token.isdigit():
+                    pieces.extend([''] * int(token))
+                elif token:
+                    pieces.append(token)
+                i = j
+                continue
             # Handle empty squares
             if c.isdigit():
                 num = c
@@ -209,19 +223,6 @@ class FENHandler:
                 continue
 
             # Handle piece IDs separated by comma (max 2 chars, or number for empties)
-            if i == 0 and fenrank[2] == ',':
-                # Look ahead for up to 2 chars
-                token = ''
-                j = i
-                while j < n and len(token) < 2 and fenrank[j] not in [',', '[']:
-                    token += fenrank[j]
-                    j += 1
-                if token.isdigit():
-                    pieces.extend([''] * int(token))
-                elif token:
-                    pieces.append(token)
-                i = j
-                continue
             if c == ',':
                 # Look ahead for up to 2 chars
                 token = ''

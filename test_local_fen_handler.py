@@ -51,8 +51,8 @@ def test_parse_one_rank():
                 'fg', 'H7', 'IJ', 'b~', 'b', 'q', 'k']
 
 def testcase_FEN(filename):
-    testcasespath = os.path.join("C:\\", "Users", "Evert Jan", "Documents",
-                     "GitHub", "chess_evert823_private", "positions",
+    testcasespath = os.path.join("C:\\", "Users", "Evert Jan", "pythonprojects",
+                     "chesspython_nogithub", "positions", "testcases_FEN",
                      filename)
     testcasespathcheck = os.path.join("C:\\", "Users", "Evert Jan", "pythonprojects",
                      "chesspython_nogithub", "positions", "testcases_fen",
@@ -63,12 +63,6 @@ def testcase_FEN(filename):
     file1.close()
 
     myfen = myFENHandler.convert_JSON_to_fen(jsontext=myjsontext)
-
-    a = myFENHandler.detect_JSON(inputtext=myjsontext)
-    print(f"JSON detection result {a}")
-    a = myFENHandler.detect_JSON(inputtext=myfen)
-    print(f"JSON detection result {a}")
-
     rc, myjson2 = myFENHandler.convert_fen_to_JSON(fentext=myfen)
     assert rc == 0
 
@@ -80,24 +74,27 @@ def testcase_FEN(filename):
     print(myfen)
     return myjsontext
 
-fen0 = '{ "mypiece": "King"}'
-fen1 = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-fen2 = "4k2r/8/8/8/1Pp5/8/8/5K2 b k b3 0 1"
-fen3 = "rn^nb~bqkbr~nn^r/pppppppppppp/12/12/12/12/12/12/12/12/PPPPPPPPPPPP/RN^NB~BQKBR~NN^R"
-fen4 = "l,fl,c,s,g,de,k,g,s,c,fl,l/rc,1,b,1,bt,ph,kr,bt,1,b,1,rc/sm,vm,r,dh,dk,q,ln,dk,dh,r,vm,sm/p,p,p,p,p,p,p,p,p,p,p,p/3,gb,4,gb,3/12/"
-fen4 += "12/3,GB,4,GB,3/P,P,P,P,P,P,P,P,P,P,P,P/SM,VM,R,DH,DK,Q,LN,DK,DH,R,VM,SM/RC,1,B,1,BT,PH,KR,BT,1,B,1,RC/L,FL,C,S,G,DE,K,G,S,C,FL,L w"
-fen5 = "[l][fl][c][s][g][de][k][g][s][c][fl][l]/[rc]1[b]1[bt][ph][kr][bt]1[b]1[rc]/[sm][vm][r][dh][dk][q][ln][dk][dh][r][vm][sm]/[p][p][p][p][p][p][p][p][p][p][p][p]/3[gb]4[gb]3/12/"
-fen5 += "12/3[GB]4[GB]3/[P][P][P][P][P][P][P][P][P][P][P][P]/[SM][VM][R][DH][DK][Q][LN][DK][DH][R][VM][SM]/[RC]1[B]1[BT][PH][KR][BT]1[B]1[RC]/[L][FL][C][S][G][DE][K][G][S][C][FL][L] w"
-
-#We pick a location and filename for the piecedefinitions.csv
-
-#We load the piecedefinitions.csv
 
 myFENHandler = FENHandler(piecedefinitions_loc=piecedefinitions_loc())
+myFENHandler.pieceID_separation_strategy = "comma"
 myFENHandler.load_piece_definitions()
 test_parse_one_rank()
 
-#a = myFENHandler.convert_JSON_to_fen(jsontext=json_input_testcase3())
-#rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=a)
-
-myjson = testcase_FEN(filename="JamesAgadir_comradM.json")
+myFENHandler = FENHandler(piecedefinitions_loc=piecedefinitions_loc())
+myFENHandler.load_piece_definitions()
+myFENHandler.pieceID_separation_strategy = "comma"
+myjson = testcase_FEN(filename="testcase_FEN_chess_01_simple.json")
+myjson = testcase_FEN(filename="testcase_FEN_chess_02_simple_special_nonalf.json")
+myjson = testcase_FEN(filename="testcase_FEN_chess_03_comma.json")
+myFENHandler.pieceID_separation_strategy = "squarebracket"
+myjson = testcase_FEN(filename="testcase_FEN_chess_04_squarebrackets.json")
+del myFENHandler
+myFENHandler = FENHandler(piecedefinitions_loc=chushogipiecedefinitions_loc())
+myFENHandler.load_piece_definitions()
+myFENHandler.pieceID_separation_strategy = "comma"
+myjson = testcase_FEN(filename="bug.json")
+myjson = testcase_FEN(filename="testcase_FEN_chu_01_simple.json")
+myjson = testcase_FEN(filename="testcase_FEN_chu_02_simple_special_nonalf.json")
+myjson = testcase_FEN(filename="testcase_FEN_chu_03_comma.json")
+myFENHandler.pieceID_separation_strategy = "squarebracket"
+myjson = testcase_FEN(filename="testcase_FEN_chu_04_squarebrackets.json")
