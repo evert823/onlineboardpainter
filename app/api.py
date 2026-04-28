@@ -6,6 +6,8 @@ from app.services.makeboard import process_text
 from app.services.makechuboard import process_text4chu
 from app.services.authenticate import verify_test_text
 from fastapi.responses import FileResponse
+from app.models.fen_json_converter_input import FENJsonConverterInput
+from app.services.convertfenjson import process_fen_json
 import os
 
 router = APIRouter()
@@ -35,3 +37,7 @@ def get_image(image_file: str):
     output_dir = "/home/administrator/onlineboardpainter/useroutput/boardimages"
     file_path = os.path.join(output_dir, image_file)
     return FileResponse(path=file_path, media_type='image/png')
+
+@router.post("/onlineboardpainter/api/convertfenjson")
+def convert_fenjson(input: FENJsonConverterInput):
+    return process_fen_json(input)

@@ -51,8 +51,8 @@ def test_parse_one_rank():
                 'fg', 'H7', 'IJ', 'b~', 'b', 'q', 'k']
 
 def testcase_FEN(filename):
-    testcasespath = os.path.join("C:\\", "Users", "Evert Jan", "pythonprojects",
-                     "chesspython_nogithub", "positions", "testcases_fen",
+    testcasespath = os.path.join("C:\\", "Users", "Evert Jan", "Documents",
+                     "GitHub", "chess_evert823_private", "positions",
                      filename)
     testcasespathcheck = os.path.join("C:\\", "Users", "Evert Jan", "pythonprojects",
                      "chesspython_nogithub", "positions", "testcases_fen",
@@ -100,18 +100,4 @@ test_parse_one_rank()
 #a = myFENHandler.convert_JSON_to_fen(jsontext=json_input_testcase3())
 #rc, myjson = myFENHandler.convert_fen_to_JSON(fentext=a)
 
-myjson = testcase_FEN(filename="testcase_FEN_chess_01_simple.json")
-myjson = testcase_FEN(filename="testcase_FEN_chess_02_simple_special_nonalf.json")
-myFENHandler.pieceID_separation_strategy = "comma"
-myjson = testcase_FEN(filename="testcase_FEN_chess_03_comma.json")
-myFENHandler.pieceID_separation_strategy = "squarebracket"
-myjson = testcase_FEN(filename="testcase_FEN_chess_04_squarebrackets.json")
-del myFENHandler
-myFENHandler = FENHandler(piecedefinitions_loc=chushogipiecedefinitions_loc())
-myFENHandler.load_piece_definitions()
-myjson = testcase_FEN(filename="testcase_FEN_chu_01_simple.json")
-myjson = testcase_FEN(filename="testcase_FEN_chu_02_simple_special_nonalf.json")
-myFENHandler.pieceID_separation_strategy = "comma"
-myjson = testcase_FEN(filename="testcase_FEN_chu_03_comma.json")
-myFENHandler.pieceID_separation_strategy = "squarebracket"
-myjson = testcase_FEN(filename="testcase_FEN_chu_04_squarebrackets.json")
+myjson = testcase_FEN(filename="JamesAgadir_comradM.json")

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FEN &lt;-&gt; JSON Converter</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        textarea { width: 100%; min-height: 120px; margin-bottom: 10px; }
+        select, button { margin: 5px 0; }
+        label { font-weight: bold; }
+        .container { max-width: 700px; margin: auto; }
+        .row { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>FEN &lt;-&gt; JSON Converter</h2>
+        <form id="convertForm" onsubmit="return false;">
+            <div class="row">
+                <label for="direction">Direction:</label>
+                <select id="direction" name="direction">
+                    <option value="fen2json">FEN to JSON</option>
+                    <option value="json2fen">JSON to FEN</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="context">Context:</label>
+                <select id="context" name="context">
+                    <option value="chess">Chess</option>
+                    <option value="shogi">Shogi</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="pieceID_separation_strategy">PieceID Separation Strategy:</label>
+                <select id="pieceID_separation_strategy" name="pieceID_separation_strategy">
+                    <option value="comma">Comma</option>
+                    <option value="squarebracket">Square Bracket</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="inputText" id="inputLabel">Input (FEN):</label>
+                <textarea id="inputText" name="inputText" placeholder="Enter FEN or JSON here"></textarea>
+            </div>
+            <div class="row">
+                <button type="button" onclick="convert()">Convert</button>
+            </div>
+            <div class="row">
+                <label for="outputText" id="outputLabel">Output (JSON):</label>
+                <textarea id="outputText" name="outputText" readonly></textarea>
+            </div>
+            <div class="row">
+                <span id="message" style="color: #b00;"></span>
+            </div>
+        </form>
+    </div>
+    <script>
+        const directionSelect = document.getElementById('direction');
+        const inputLabel = document.getElementById('inputLabel');
+        const outputLabel = document.getElementById('outputLabel');
+
+        directionSelect.addEventListener('change', function() {
+            if (this.value === 'fen2json') {
+                inputLabel.textContent = 'Input (FEN):';
+                outputLabel.textContent = 'Output (JSON):';
+                document.getElementById('inputText').placeholder = 'Enter FEN here';
+            } else {
+                inputLabel.textContent = 'Input (JSON):';
+                outputLabel.textContent = 'Output (FEN):';
+                document.getElementById('inputText').placeholder = 'Enter JSON here';
+            }
+        });
+
+        async function convert() {
+            document.getElementById('message').textContent = '';
+            const inputText = document.getElementById('inputText').value;
+            const direction = document.getElementById('direction').value;
+            const context = document.getElementById('context').value;
+            const pieceID_separation_strategy = document.getElementById('pieceID_separation_strategy').value;
+
+            if (!inputText.trim()) {
+                document.getElementById('message').textContent = 'Please enter input text.';
+                return;
+            }
+
+            const payload = {
+                text: inputText,
+                direction: direction,
+                context: context,
+                pieceID_separation_strategy: pieceID_separation_strategy
+            };
+
+            try {
+                const response = await fetch('/onlineboardpainter/api/convertfenjson', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                if (data.converted_text !== undefined) {
+                    document.getElementById('outputText').value = data.converted_text;
+                    document.getElementById('message').textContent = data.message || '';
+                } else {
+                    document.getElementById('outputText').value = '';
+                    document.getElementById('message').textContent = data.message || 'Conversion failed.';
+                }
+            } catch (err) {
+                document.getElementById('outputText').value = '';
+                document.getElementById('message').textContent = 'Error contacting server.';
+            }
+        }
+    </script>
+</body>
+</html>
