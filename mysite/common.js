@@ -1,3 +1,38 @@
+// Bot authentication logic
+function authenticateUser() {
+  const userOrBot = document.getElementById('user-or-bot').value;
+  fetch('/onlineboardpainter/api/authenticate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ text: userOrBot })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      isAuthenticated = true;
+      document.getElementById('auth-result').innerText = data.message || 'Authenticated!';
+      document.getElementById('send-btn').disabled = false;
+      // Store authentication in cookie if consent given
+      if (cookieConsentGiven) {
+        setCookie('bot_auth', 'yes', 7);
+      }
+      // Hide bot defense section
+      document.getElementById('bot-defense-section').style.display = 'none';
+    } else {
+      isAuthenticated = false;
+      document.getElementById('auth-result').innerText = data.message || 'Authentication failed.';
+      document.getElementById('send-btn').disabled = true;
+    }
+  })
+  .catch(err => {
+    isAuthenticated = false;
+    document.getElementById('auth-result').innerText = 'Error: ' + err;
+    document.getElementById('send-btn').disabled = true;
+  });
+}
+
 // Cookie helpers
 function setCookie(name, value, days) {
   let expires = "";
