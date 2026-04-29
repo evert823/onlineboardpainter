@@ -1,3 +1,26 @@
+// On page load, check cookie consent and bot authentication
+function checkBotAuthOnLoad() {
+  cookieConsentGiven = getCookie('cookie_consent') === 'yes';
+  if (!cookieConsentGiven) {
+    showCookieConsentBanner();
+    document.getElementById('bot-defense-section').style.display = 'none';
+    document.getElementById('send-btn').disabled = true;
+    return;
+  }
+  // If consent given, check bot_auth cookie
+  if (getCookie('bot_auth') === 'yes') {
+    isAuthenticated = true;
+    document.getElementById('bot-defense-section').style.display = 'none';
+    document.getElementById('send-btn').disabled = false;
+  } else {
+    isAuthenticated = false;
+    document.getElementById('bot-defense-section').style.display = 'block';
+    document.getElementById('send-btn').disabled = true;
+  }
+}
+// ensure it runs after DOM is parsed (safe regardless of script order)
+document.addEventListener('DOMContentLoaded', checkBotAuthOnLoad);
+
 // Bot authentication logic
 function authenticateUser() {
   const userOrBot = document.getElementById('user-or-bot').value;
