@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Gallery</title>
+  <link rel="icon" href="/myicon.ico" type="image/x-icon">
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; padding: 20px; }
+    h2 { margin-bottom: 12px; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* force 2 columns for a 2x2 layout */
+      gap: 16px;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .gallery { grid-template-columns: 1fr; } /* single column on small screens */
+    }
+
+    /* shrink the grey "panel" to wrap only the thumbnail */
+    figure {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: transparent;
+    }
+
+    /* background, padding and rounded corners only around the image link */
+    figure > a {
+      display: inline-block;
+      background: #f8f8f8;
+      padding: 6px;
+      border-radius: 6px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    figure img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      max-height: 320px; /* limit very tall images */
+      border-radius: 4px;
+    }
+
+    figcaption {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .meta { color: #666; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h2>Boardpainter tool examples</h2>
+
+  <div class="gallery">
+    <figure>
+      <a href="bulldog_example.png" target="_blank" rel="noopener">
+        <img src="bulldog_example.png" alt="Bulldog example 598x486">
+      </a>
+    </figure>
+
+    <figure>
+      <a href="chu_shogi_example.png" target="_blank" rel="noopener">
+        <img src="chu_shogi_example.png" alt="Chu Shogi example 2226x2421">
+      </a>
+    </figure>
+
+    <figure>
+      <a href="dark_forest_initial.png" target="_blank" rel="noopener">
+        <img src="dark_forest_initial.png" alt="Dark Forest initial 598x600">
+      </a>
+    </figure>
+
+    <figure>
+      <a href="huge_chess_example.png" target="_blank" rel="noopener">
+        <img src="huge_chess_example.png" alt="Huge chess example 712x714">
+      </a>
+    </figure>
+  </div>
+</body>
+</html>
