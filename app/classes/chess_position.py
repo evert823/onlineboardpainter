@@ -12,6 +12,10 @@ class ChessPosition:
     def reset_boardsize(self, pboardwidth, pboardheight):
         self.boardwidth = pboardwidth
         self.boardheight = pboardheight
+        if self.boardwidth > 600:
+            raise ValueError("boardsize not allowed")
+        if self.boardheight > 600:
+            raise ValueError("boardsize not allowed")
         self.squares.clear()
         self.terrain = []
         for j in range(self.boardheight):
