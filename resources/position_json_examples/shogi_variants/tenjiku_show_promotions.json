@@ -1,0 +1,23 @@
+{
+    "boardwidth": 16,
+    "boardheight": 16,
+    "colourtomove": 1,
+        "squares": [
+        "-WH*|-SS*| -B*|-VS*|-SM*|-VM*| -R*|-Pr*|   .| -R*|-VM*|-SM*|-VS*| -B*|-SS*|-WH*",
+        "-Wl*|   .| -HT| -HT|   .| -FS| -Q*|-FE*|-LH*|-Ln*| -FS|   .| -HT| -HT|   .|-Wl*",
+        "-WB*|-Ch*|-DH*|-HF*|-SE*|-FD*|   .|   .|   .|   .|-FD*|-SE*|-HF*|-DH*|-Ch*|-WB*",
+        " -FB|-FO*|-DK*|-BG*|-RG*|-VG*|-GG*|   .|   .|-GG*|-VG*|-RG*|-BG*|-DK*|-FO*| -FB",
+        " -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk",
+        "   .|   .|   .|   .| -MG|   .|   .|   .|   .|   .|   .| -MG|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|  MG|   .|   .|   .|   .|   .|   .|  MG|   .|   .|   .|   .",
+        "  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk",
+        "  FB| FO*| DK*| BG*| RG*| VG*| GG*|   .|   .| GG*| VG*| RG*| BG*| DK*| FO*|  FB",
+        " WB*| Ch*| DH*| HF*| SE*| FD*|   .|   .|   .|   .| FD*| SE*| HF*| DH*| Ch*| WB*",
+        " Wl*|   .|  HT|  HT|   .|  FS| Ln*| LH*| FE*|  Q*|  FS|   .|  HT|  HT|   .| Wl*",
+        " WH*| SS*|  B*| VS*| SM*| VM*|  R*|   .| Pr*|  R*| VM*| SM*| VS*|  B*| SS*| WH*"
+    ]
+}

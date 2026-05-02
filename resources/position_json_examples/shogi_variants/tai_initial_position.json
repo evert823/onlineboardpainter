@@ -1,0 +1,32 @@
+{
+    "boardwidth": 25,
+    "boardheight": 25,
+    "colourtomove": 1,
+    "squares": [
+        "  -L| -WT| -Wl| -Fn| -Lo| -WD|  -R| -DH| -DK|  -Q|  -G| -DS| -Em| -Dv|  -G|  -Q| -DK| -DH|  -R| -WD| -Lo| -Fn| -Wl| -TS|  -L",
+        " -RC| -Sn| -SE|  -N| -PS| -FT|  -B| -Fi| -WE| -Fr|  -S| -QG| -Pr| -LG|  -S| -Fr| -WE| -Fi|  -B| -FT| -PS|  -N| -SE| -Sn| -RC",
+        " -Ra| -WH| -RS| -VO| -CS| -BB| -Si| -Go| -BM| -BT| -SD| -Gr| -NK|  -W| -Bu| -BT| -BM| -Go| -Si| -BB| -CS| -VO| -RS| -WH| -Ra",
+        " -Sl| -WB| -FL| -NB| -SB| -CC| -HF| -OM| -RB| -Pk| -Gd| -Ph| -Ln| -Kr| -Gn| -Pk| -OK| -OM| -HF| -CC| -Ea| -Wi| -FL| -WB| -Sl",
+        " -QC| -Vw| -WG|  -E| -St|  -T|  -I|  -C| -OR| -Co| -RD| -HM| -DE| -Ca| -RD| -Co| -OR|  -C|  -I|  -T| -St|  -E| -WG| -BD| -LC",
+        " -HD| -FH| -EB| -Dn| -FO| -SM| -VM| -VB| -Sr| -Pg| -AB| -EW| -LD| -EW| -AB| -Pg| -Sr| -VB| -VM| -SM| -FO| -Dn| -EB| -FH| -HD",
+        "  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p",
+        "   .|   .|   .|   .|   .|   .|   .| -GB|   .|   .|   .|   .|   .|   .|   .|   .|   .| -GB|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|  GB|   .|   .|   .|   .|   .|   .|   .|   .|   .|  GB|   .|   .|   .|   .|   .|   .|   .",
+        "   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p",
+        "  HD|  FH|  EB|  Dn|  FO|  SM|  VM|  VB|  Sr|  Pg|  AB|  EW|  LD|  EW|  AB|  Pg|  Sr|  VB|  VM|  SM|  FO|  Dn|  EB|  FH|  HD",
+        "  LC|  BD|  WG|   E|  St|   T|   I|   C|  OR|  Co|  RD|  Ca|  DE|  HM|  RD|  Co|  OR|   C|   I|   T|  St|   E|  WG|  Vw|  QC",
+        "  Sl|  WB|  FL|  Wi|  Ea|  CC|  HF|  OM|  OK|  Pk|  Gn|  Kr|  Ln|  Ph|  Gd|  Pk|  RB|  OM|  HF|  CC|  SB|  NB|  FL|  WB|  Sl",
+        "  Ra|  WH|  RS|  VO|  CS|  BB|  Si|  Go|  BM|  BT|  Bu|   W|  NK|  Gr|  SD|  BT|  BM|  Go|  Si|  BB|  CS|  VO|  RS|  WH|  Ra",
+        "  RC|  Sn|  SE|   N|  PS|  FT|   B|  Fi|  WE|  Fr|   S|  LG|  Pr|  QG|   S|  Fr|  WE|  Fi|   B|  FT|  PS|   N|  SE|  Sn|  RC",
+        "   L|  TS|  Wl|  Fn|  Lo|  WD|   R|  DH|  DK|   Q|   G|  Dv|  Em|  DS|   G|   Q|  DK|  DH|   R|  WD|  Lo|  Fn|  Wl|  WT|   L"
+    ]
+}

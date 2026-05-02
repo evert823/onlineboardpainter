@@ -1,0 +1,21 @@
+{
+    "boardwidth": 8,
+    "boardheight": 8,
+    "colourtomove": 1,
+    "precedingmove": {
+        "x_from": 2,
+        "y_from": 6,
+        "x_to": 2,
+        "y_to": 4
+      },
+        "squares": [
+        "-R|-N|-B|-Q|-K|-B|-N|-R",
+        "-p|-p|-p|-p|-p|-p|-p|-p",
+        " .| .| .|-K|-Q| .| .| .",
+        " .| .| .| .| .| .| .| .",
+        " .| .| .| .| .| .| .| .",
+        " .| .| .| K| Q| .| .| .",
+        " p| p| p| p| p| p| p| p",
+        " R| N| B| Q| K| B| N| R"
+    ]
+}

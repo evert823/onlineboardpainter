@@ -1,0 +1,19 @@
+{
+    "boardwidth": 12,
+    "boardheight": 12,
+    "colourtomove": 1,
+        "squares": [
+        "-WH*| -B*|-SM*|-VM*| -R*|-Pr*|-Pr*| -R*|-VM*|-SM*| -B*|-WH*",
+        "-Wl*|   .|-DH*|   .| -FS| -Q*|-Ln*|-FS*|   .|-DH*|   .|-Wl*",
+        " -FB|-FO*|-DK*|-HF*|-SE*|   .|   .|-SE*|-HF*|-DK*|-FO*|-FB*",
+        " -Tk| -Tk| -Tk| -Tk| -Tk|-Tk*|-Tk*|-Tk*|-Tk*|-Tk*|-Tk*|-Tk*",
+        "   .|   .|   .|-DE*|   .|   .|   .|   .|-DE*|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .| DE*|   .|   .|   .|   .| DE*|   .|   .|   .",
+        "  Tk|  Tk|  Tk|  Tk|  Tk| Tk*| Tk*| Tk*| Tk*| Tk*| Tk*| Tk*",
+        "  FB| FO*| DK*| HF*| SE*|   .|   .| SE*| HF*| DK*| FO*| FB*",
+        " Wl*|   .| DH*|   .|  FS| Ln*|  Q*| FS*|   .| DH*|   .| Wl*",
+        " WH*|  B*| SM*| VM*|  R*| Pr*| Pr*|  R*| VM*| SM*|  B*| WH*"
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "boardwidth": 16,
+    "boardheight": 16,
+    "colourtomove": 1,
+        "squares": [
+        "  -L|  -N| -FL|  -I|  -C|  -S|  -G| -DE|  -K|  -G|  -S|  -C|  -I| -FL|  -N|  -L",
+        " -RC|   .| -Ch| -Ch|   .| -BT| -Ph|  -Q| -Ln| -Kr| -BT|   .| -Ch| -Ch|   .| -RC",
+        " -SS| -VS|  -B| -DH| -DK| -WB| -FD| -FE| -LH| -FD| -WB| -DK| -DH|  -B| -VS| -SS",
+        " -SM| -VM|  -R| -HF| -SE| -BG| -RG| -VG| -GG| -RG| -BG| -SE| -HF|  -R| -VM| -SM",
+        "  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p",
+        "   .|   .|   .|   .| -Dg|   .|   .|   .|   .|   .|   .| -Dg|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|  Dg|   .|   .|   .|   .|   .|   .|  Dg|   .|   .|   .|   .",
+        "   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p",
+        "  SM|  VM|   R|  HF|  SE|  BG|  RG|  GG|  VG|  RG|  BG|  SE|  HF|   R|  VM|  SM",
+        "  SS|  VS|   B|  DH|  DK|  WB|  FD|  LH|  FE|  FD|  WB|  DK|  DH|   B|  VS|  SS",
+        "  RC|   .|  Ch|  Ch|   .|  BT|  Kr|  Ln|   Q|  Ph|  BT|   .|  Ch|  Ch|   .|  RC",
+        "   L|   N|  FL|   I|   C|   S|   G|   K|  DE|   G|   S|   C|   I|  FL|   N|   L"
+    ]
+}

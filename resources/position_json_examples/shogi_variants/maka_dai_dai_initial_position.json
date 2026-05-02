@@ -1,0 +1,26 @@
+{
+    "boardwidth": 19,
+    "boardheight": 19,
+    "colourtomove": 1,
+        "squares": [
+        "  -L|  -E| -St|  -T|  -I|  -C|  -S|  -G| -DS|  -K| -Dv|  -G|  -S|  -C|  -I|  -T| -St|  -E|  -L",
+        " -RC|   .| -CS|   .| -OM|   .| -RD| -FL| -BT| -DE| -BT| -FL| -Co|   .| -CC|   .| -CS|   .| -RC",
+        "   .| -OR|   .| -AB|   .| -BB|   .| -EW| -Ph| -Ln| -Kr| -EW|   .| -BB|   .| -AB|   .| -OR|   .",
+        " -Dn|   .|  -N|   .| -VO|   .| -Fn| -SD| -Gr| -LD|  -W| -Bu| -Fn|   .| -VO|   .|  -N|   .| -Dn",
+        "  -R| -QC| -SM| -SF| -VM|  -B| -DH| -DK| -HM|  -Q| -Ca| -DK| -DH|  -B| -VM| -SF| -SM| -LC|  -R",
+        "  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p",
+        "   .|   .|   .|   .|   .| -GB|   .|   .|   .|   .|   .|   .|   .| -GB|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|  GB|   .|   .|   .|   .|   .|   .|   .|  GB|   .|   .|   .|   .|   .",
+        "   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p",
+        "   R|  LC|  SM|  SF|  VM|   B|  DH|  DK|  Ca|   Q|  HM|  DK|  DH|   B|  VM|  SF|  SM|  QC|   R",
+        "  Dn|   .|   N|   .|  VO|   .|  Fn|  Bu|   W|  LD|  Gr|  SD|  Fn|   .|  VO|   .|   N|   .|  Dn",
+        "   .|  OR|   .|  AB|   .|  BB|   .|  EW|  Kr|  Ln|  Ph|  EW|   .|  BB|   .|  AB|   .|  OR|   .",
+        "  RC|   .|  CS|   .|  CC|   .|  Co|  FL|  BT|  DE|  BT|  FL|  RD|   .|  OM|   .|  CS|   .|  RC",
+        "   L|   E|  St|   T|   I|   C|   S|   G|  Dv|   K|  DS|   G|   S|   C|   I|   T|  St|   E|   L"
+    ]
+}

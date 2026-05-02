@@ -1,0 +1,32 @@
+{
+    "boardwidth": 25,
+    "boardheight": 25,
+    "colourtomove": 1,
+    "squares": [
+        "  -L| -WT| -8h| -Wl| -FD| -8f| -Lo| -8e| -8d| -Fr| -8c| -WD| -FT|  -Q| -8a| -QG|  -G| -Pr|  -K|  -G| -LG| -8a|  -Q| -FT| -8b",
+        " -RC| -Fa| -8i| -8j| -8k| -8l| -8m| -8n| -8o| -8p| -8q| -8r| -8s| -8t| -SD| -Gr|  -S| -DE| -NK|  -S|  -W| -Bu| -8t| -8s| -8r",
+        " -8u| -Sn| -8v| -8w| -BG| -RG| -8x| -8z| -7b| -7c| -7d| -RB| -OK| -Pk| -7e| -7f|  -C| -7g| -7h|  -C| -7f| -7e| -Pk| -OK| -RB",
+        " -7i| -7j|  -N| -7k| -7l| -7m| -7n| -7o| -7p| -7q| -Si| -Go| -Ln| -7r| -7s| -7t| -7u| -VG| -GG| -7u| -7t| -7s| -7r| -Ln| -Go",
+        " -7v| -7w|  -B|  -R| -7x| -7y| -7z| -6a| -Sl| -6b| -6c| -6d| -Ra| -RS| -VO| -Gn| -Gd| -DS| -Dv| -Gd| -Gn| -VO| -RS| -Ra| -6d",
+        " -6e| -WH| -HD| -SM| -Pg| -WB| -FL| -Fi| -Fn| -PS| -6f| -6g| -6h| -6i| -6j| -Ph| -HM| -6k| -6l| -Ca| -Kr| -6j| -6i| -6h| -6g",
+        " -6m| -6n| -6o| -Dn| -FH| -VB| -AB| -EW| -6p| -6q| -OM| -CC| -NB| -SB| -6r| -6s| -6t| -6u| -6v| -6t| -6s| -6r| -Ea| -Wi| -CC",
+        " -6w| -Vw| -EB| -6x| -6y| -6z| -CS| -5a| -BM| -BT| -5b| -SF| -BB| -OR| -Sq| -Co| -RD| -FE| -LH| -RD| -Co| -Sq| -OR| -BB| -SF",
+        " -Ch| -SS| -VS| -5c| -5d| -5e| -Sr| -5f| -WG| -5g|  -E| -5h| -St| -5i|  -T| -5j|  -I| -5k| -5l|  -I| -5j|  -T| -5i| -St| -5h",
+        " -QC| -5m| -VM| -FO| -5n| -5o| -5p| -5q| -DH| -DK| -5r| -HF| -SE| -5s| -5t| -Sv| -5u| -5v| -LD| -5u| -Sv| -5t| -5s| -SE| -HF",
+        "  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p|  -p",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p|   p",
+        "  QC|  5m|  VM|  FO|  5n|  5o|  5p|  5q|  DH|  DK|  5r|  HF|  SE|  5s|  5t|  Sv|  5u|  5v|  LD|  5u|  Sv|  5t|  5s|  SE|  HF",
+        "  Ch|  SS|  VS|  5c|  5d|  5e|  Sr|  5f|  WG|  5g|   E|  5h|  St|  5i|   T|  5j|   I|  5k|  5l|   I|  5j|   T|  5i|  St|  5h",
+        "  6w|  Vw|  EB|  6x|  6y|  6z|  CS|  5a|  BM|  BT|  5b|  SF|  BB|  OR|  Sq|  Co|  RD|  FE|  LH|  RD|  Co|  Sq|  OR|  BB|  SF",
+        "  6m|  6n|  6o|  Dn|  FH|  VB|  AB|  EW|  6p|  6q|  OM|  CC|  NB|  SB|  6r|  6s|  6t|  6u|  6v|  6t|  6s|  6r|  Ea|  Wi|  CC",
+        "  6e|  WH|  HD|  SM|  Pg|  WB|  FL|  Fi|  Fn|  PS|  6f|  6g|  6h|  6i|  6j|  Ph|  HM|  6k|  6l|  Ca|  Kr|  6j|  6i|  6h|  6g",
+        "  7v|  7w|   B|   R|  7x|  7y|  7z|  6a|  Sl|  6b|  6c|  6d|  Ra|  RS|  VO|  Gn|  Gd|  DS|  Dv|  Gd|  Gn|  VO|  RS|  Ra|  6d",
+        "  7i|  7j|   N|  7k|  7l|  7m|  7n|  7o|  7p|  7q|  Si|  Go|  Ln|  7r|  7s|  7t|  7u|  VG|  GG|  7u|  7t|  7s|  7r|  Ln|  Go",
+        "  8u|  Sn|  8v|  8w|  BG|  RG|  8x|  8z|  7b|  7c|  7d|  RB|  OK|  Pk|  7e|  7f|   C|  7g|  7h|   C|  7f|  7e|  Pk|  OK|  RB",
+        "  RC|  Fa|  8i|  8j|  8k|  8l|  8m|  8n|  8o|  8p|  8q|  8r|  8s|  8t|  SD|  Gr|   S|  DE|  NK|   S|   W|  Bu|  8t|  8s|  8r",
+        "   L|  WT|  8h|  Wl|  FD|  8f|  Lo|  8e|  8d|  Fr|  8c|  WD|  FT|   Q|  8a|  QG|   G|  Pr|   K|   G|  LG|  8a|   Q|  FT|  8b"
+    ]
+}

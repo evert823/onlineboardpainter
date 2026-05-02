@@ -1,0 +1,22 @@
+{
+    "boardwidth": 15,
+    "boardheight": 15,
+    "colourtomove": 1,
+        "squares": [
+        "-WH*| -G*| -G*| -G*|-SM*|-VM*| -R*|   .| -R*|-VM*|-SM*| -G*| -G*| -G*|-WH*",
+        "-Wl*|   .| -G*|   .| -B*|   .| -FS|-Pr*| -FS|   .| -B*|   .| -G*|   .|-Wl*",
+        "   .| -G*|   .| -G*|   .| -G*| -Q*|   .|-Ln*| -G*|   .| -G*|   .| -G*|   .",
+        "-DK*| -G*| -FB|-FO*|-DH*|-HF*|-SE*|   .|-SE*|-HF*|-DH*|-FO*| -FB| -G*| -DK*",
+        " -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk| -Tk",
+        "   .|   .|   .|   .|-DE*|   .|   .|   .|   .|   .|-DE*|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .",
+        "   .|   .|   .|   .| DE*|   .|   .|   .|   .|   .| DE*|   .|   .|   .|   .",
+        "  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk|  Tk",
+        " DK*|  G*|  FB| FO*| DH*| HF*| SE*|   .| SE*| HF*| DH*| FO*|  FB|  G*| DK*",
+        "   .|  G*|   .|  G*|   .|  G*| Ln*|   .|  Q*|  G*|   .|  G*|   .|  G*|   .",
+        " Wl*|   .|  G*|   .|  B*|   .|  FS| Pr*|  FS|   .|  B*|   .|  G*|   .| Wl*",
+        " WH*|  G*|  G*|  G*| SM*| VM*|  R*|   .|  R*| VM*| SM*|  G*|  G*|  G*| WH*"
+    ]
+}
