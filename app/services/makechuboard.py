@@ -42,7 +42,7 @@ def create_board(file_name, output_dir, theme):
     image_path = os.path.join(output_dir, "boardimages", f"{file_name}.png")
 
     if theme == "set2":
-        myboardpainter.pieceimages_folder = "/home/administrator/chu_shogi_piece_images/output_set2"
+        myboardpainter.pieceimages_folder = "/home/administrator/onlineboardpainter/resources/shogi_set2"
 
     myboardpainter.load_file(file_path)
     myboardpainter.create_board_image_and_save(image_path)

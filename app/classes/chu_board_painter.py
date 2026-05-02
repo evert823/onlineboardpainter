@@ -13,7 +13,7 @@ class ChuBoardPainter:
     def __init__(self):
         self.MyChessPosition = ChessPosition()
         self.MyPieceNameHandler = PieceNameHandler()
-        self.pieceimages_folder = "/home/administrator/chu_shogi_piece_images/output_set1"
+        self.pieceimages_folder = "/home/administrator/onlineboardpainter/resources/shogi_set1"
         self.pieceimages_extension = "png"
 
         #TODO make dynamic, get from json
