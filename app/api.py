@@ -8,6 +8,8 @@ from app.services.authenticate import verify_test_text
 from fastapi.responses import FileResponse
 from app.models.fen_json_converter_input import FENJsonConverterInput
 from app.services.convertfenjson import process_fen_json
+from app.models.request_piecelist_input import RequestPieceListInput
+from app.services.provide_piecelist import process_request_for_piecelist
 import os
 
 router = APIRouter()
@@ -41,3 +43,7 @@ def get_image(image_file: str):
 @router.post("/onlineboardpainter/api/convertfenjson")
 def convert_fenjson(input: FENJsonConverterInput):
     return process_fen_json(input)
+
+@router.post("/onlineboardpainter/api/providepiecelist")
+def provide_piecelist(input: RequestPieceListInput):
+    return process_request_for_piecelist(input)
