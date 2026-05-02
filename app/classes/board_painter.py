@@ -138,10 +138,10 @@ class BoardPainter:
             imagefilename = f"{piececolour}{piecename.lower()}on{squarecolour}.{myextension}"
 
         try:
-            pieceimage = Image.open(f"/home/administrator/chess_variant_boardpainter/{myfolder}/{imagefilename}", mode='r')
+            pieceimage = Image.open(f"/home/administrator/onlineboardpainter/resources/{myfolder}/{imagefilename}", mode='r')
         except:
             imagefilename = f"_notfoundon{squarecolour}.{myextension}"
-            pieceimage = Image.open(f"/home/administrator/chess_variant_boardpainter/{myfolder}/{imagefilename}", mode='r')
+            pieceimage = Image.open(f"/home/administrator/onlineboardpainter/resources/{myfolder}/{imagefilename}", mode='r')
 
         pieceimage.convert('RGB')
 
