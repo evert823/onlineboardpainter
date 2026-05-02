@@ -8,14 +8,14 @@ import json
 
 def piecedefinitions_loc():
     s = os.path.join("C:\\", "Users", "Evert Jan", "Documents",
-                     "GitHub", "chess_variant_boardpainter",
+                     "GitHub", "onlineboardpainter", "resources",
                      "piecedefinitions", "piecedefinitions.csv")
     return s
 
 
 def chushogipiecedefinitions_loc():
     s = os.path.join("C:\\", "Users", "Evert Jan", "Documents",
-                     "GitHub", "chess_variant_boardpainter", "shogi_variants",
+                     "GitHub", "onlineboardpainter", "resources",
                      "piecedefinitions", "chushogipiecedefinitions.csv")
     return s
 

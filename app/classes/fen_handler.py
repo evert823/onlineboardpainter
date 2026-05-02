@@ -3,7 +3,7 @@ from app.classes.piece_name_handler import PieceNameHandler
 import json
 
 class FENHandler:
-    def __init__(self, piecedefinitions_loc="/home/administrator/chess_variant_boardpainter/piecedefinitions/piecedefinitions.csv"):
+    def __init__(self, piecedefinitions_loc="/home/administrator/onlineboardpainter/resources/piecedefinitions/piecedefinitions.csv"):
         self.MyChessPosition = ChessPosition()
         self.MyPieceNameHandler = PieceNameHandler()
         self.piecedefinitions_loc = piecedefinitions_loc

@@ -12,7 +12,6 @@ html --> A-record --> Linux VPS --> Apache --> FastAPI
 - html mysite\onlineboardpainter --> /var/www/dev/mysite/onlineboardpainter/
 
 # dependencies on other repositories
-https://github.com/evert823/chess_variant_boardpainter --> /home/administrator/chess_variant_boardpainter/
 https://github.com/evert823/chu_shogi_piece_images --> for recreating piece image files or creating them differently
 
 # clean script in crontab

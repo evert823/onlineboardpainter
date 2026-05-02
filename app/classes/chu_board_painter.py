@@ -30,7 +30,7 @@ class ChuBoardPainter:
         self.load_piece_definitions()
 
     def load_piece_definitions(self):
-        self.MyPieceNameHandler.load_piece_definitions(filename="/home/administrator/chess_variant_boardpainter/shogi_variants/piecedefinitions/chushogipiecedefinitions.csv")
+        self.MyPieceNameHandler.load_piece_definitions(filename="/home/administrator/onlineboardpainter/resources/piecedefinitions/chushogipiecedefinitions.csv")
         mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("K")
         assert mytest == "King"
         mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("L")

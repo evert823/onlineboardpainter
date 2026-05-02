@@ -7,7 +7,7 @@ from app.classes.fen_handler import FENHandler
 def process_text(input: BoardPainterInput):
     # Your logic here
 
-    fenh = FENHandler(piecedefinitions_loc="/home/administrator/chess_variant_boardpainter/piecedefinitions/piecedefinitions.csv")
+    fenh = FENHandler(piecedefinitions_loc="/home/administrator/onlineboardpainter/resources/piecedefinitions/piecedefinitions.csv")
     fenh.load_piece_definitions()
 
     myjsontext = input.text
