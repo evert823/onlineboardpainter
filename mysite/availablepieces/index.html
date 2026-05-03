@@ -9,13 +9,13 @@
     body { font-family: Arial, sans-serif; font-size: 16px; margin: 16px; }
     h2 { font-size: 16px; margin: 8px 0; }
     /* left-align table by default (laptop/desktop) */
-    table { border-collapse: collapse; width: 100%; max-width: 420px; margin: 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 420px; margin-left: 0; }
     th, td { border: 1px solid #ccc; padding: 6px; text-align: center; vertical-align: middle; font-size: 16px; }
     img.piece { max-width: 90px; max-height: 98px; width: auto; height: auto; display: block; margin: 4px auto 0; }
 
     /* Mobile-only: make table occupy ~70% of viewport and center it */
     @media (max-width: 600px) {
-      table { max-width: 70vw; margin: 0 auto; }  /* center on mobile */
+      table { max-width: 70vw; margin: 0 auto; }  /* center on mobile and use ~70% width */
       body { font-size: 18px; margin: 12px; }
       h2 { font-size: 18px; }
       th, td { font-size: 18px; padding: 8px; }
@@ -25,53 +25,78 @@
 </head>
 <body>
   <h2>Available pieces</h2>
+
   <table id="piecesTable" aria-label="Available pieces table"></table>
 
   <script>
-    const items = [
-      { piecesymbol: "L", piecename: "Angel", imagefilepath: "/home/administrator/onlineboardpainter/resources/pieceimages_classicwood/whiteangelonwhite.png" },
-      { piecesymbol: "A", piecename: "Archbishop", imagefilepath: "/home/administrator/onlineboardpainter/resources/pieceimages_classicwood/whitearchbishoponwhite.png" },
-      { piecesymbol: "B", piecename: "Bishop", imagefilepath: "/home/administrator/onlineboardpainter/resources/pieceimages_classicwood/whitebishoponwhite.png" },
-      { piecesymbol: "Bf", piecename: "Buffalo", imagefilepath: "/home/administrator/onlineboardpainter/resources/pieceimages_classicwood/whitebuffaloonwhite.png" }
-    ];
+    async function loadPieces() {
+      const table = document.getElementById('piecesTable');
+      table.innerHTML = ''; // clear
 
-    const table = document.getElementById("piecesTable");
+      // Request the piece list from backend (endpoint you provided)
+      let resp;
+      try {
+        resp = await fetch('/onlineboardpainter/api/providepiecelist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({"context":"chess","theme":"classicwood"})
+        });
+      } catch (err) {
+        table.textContent = 'Error: could not contact API';
+        return;
+      }
 
-    // header
-    const thead = document.createElement('thead');
-    const htr = document.createElement('tr');
-    ["Abbr", "PieceName", "Image"].forEach(h => {
-      const th = document.createElement('th');
-      th.textContent = h;
-      htr.appendChild(th);
-    });
-    thead.appendChild(htr);
-    table.appendChild(thead);
+      if (!resp.ok) {
+        table.textContent = 'Error: API returned ' + resp.status;
+        return;
+      }
 
-    // body
-    const tbody = document.createElement('tbody');
-    items.forEach(it => {
-      const tr = document.createElement('tr');
+      const json = await resp.json();
+      const items = (json && json.piecelist_dict && json.piecelist_dict.piecedefinitions) || [];
 
-      const tdShort = document.createElement('td');
-      tdShort.textContent = it.piecesymbol;
-      tr.appendChild(tdShort);
+      // build header
+      const thead = document.createElement('thead');
+      const htr = document.createElement('tr');
+      ['Abbr', 'PieceName', 'Image'].forEach(h => {
+        const th = document.createElement('th');
+        th.textContent = h;
+        htr.appendChild(th);
+      });
+      thead.appendChild(htr);
+      table.appendChild(thead);
 
-      const tdName = document.createElement('td');
-      tdName.textContent = it.piecename;
-      tr.appendChild(tdName);
+      // build body
+      const tbody = document.createElement('tbody');
+      items.forEach(it => {
+        const tr = document.createElement('tr');
 
-      const tdImg = document.createElement('td');
-      const img = document.createElement('img');
-      img.className = 'piece';
-      img.alt = `${it.piecesymbol} ${it.piecename}`;
-      img.src = `/onlineboardpainter/api/pieceimage?image_file_path=${encodeURIComponent(it.imagefilepath)}`;
-      tdImg.appendChild(img);
-      tr.appendChild(tdImg);
+        const tdShort = document.createElement('td');
+        tdShort.textContent = it.piecesymbol || '';
+        tr.appendChild(tdShort);
 
-      tbody.appendChild(tr);
-    });
-    table.appendChild(tbody);
+        const tdName = document.createElement('td');
+        tdName.textContent = it.piecename || '';
+        tr.appendChild(tdName);
+
+        const tdImg = document.createElement('td');
+        const img = document.createElement('img');
+        img.className = 'piece';
+        img.alt = (it.piecesymbol ? it.piecesymbol + ' ' : '') + (it.piecename || '');
+        if (it.imagefilepath) {
+          img.src = '/onlineboardpainter/api/pieceimage?image_file_path=' + encodeURIComponent(it.imagefilepath);
+        } else {
+          img.alt = 'no image';
+        }
+        tdImg.appendChild(img);
+        tr.appendChild(tdImg);
+
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+    }
+
+    // load on page open
+    loadPieces();
   </script>
 </body>
 </html>
