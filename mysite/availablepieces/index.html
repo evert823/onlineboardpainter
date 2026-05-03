@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Piecelist</title>
+  <link rel="icon" href="/myicon.ico" type="image/x-icon">
+</head>
+<body>
+  <h2>Available pieces for Chess variants</h2>
+
+  <img id="pieceImg" alt="Piece image" />
+
+  <script>
+    const fullImagePath = "/home/administrator/onlineboardpainter/resources/pieceimages_classicwood/whitebishoponwhite.png";
+    document.getElementById("pieceImg").src =
+      `/onlineboardpainter/api/pieceimage?image_file_path=${encodeURIComponent(fullImagePath)}`;
+  </script>
+
+</body>
+</html>

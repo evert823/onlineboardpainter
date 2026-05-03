@@ -40,6 +40,10 @@ def get_image(image_file: str):
     file_path = os.path.join(output_dir, image_file)
     return FileResponse(path=file_path, media_type='image/png')
 
+@router.get("/onlineboardpainter/api/pieceimage")
+def get_pieceimage(image_file_path: str):
+    return FileResponse(path=image_file_path, media_type='image/png')
+
 @router.post("/onlineboardpainter/api/convertfenjson")
 def convert_fenjson(input: FENJsonConverterInput):
     return process_fen_json(input)
