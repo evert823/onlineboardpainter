@@ -22,24 +22,21 @@
         max-width: 70vw;
         margin-left: 0;
         margin-right: 8px;
-        table-layout: fixed;     /* force fixed column widths so images don't expand table */
+        table-layout: fixed;
         width: 70vw;
       }
       body { font-size: 18px; margin: 12px; }
       h1 { font-size: 20px; }
-      /* reduce padding slightly on mobile and allow long names to wrap */
       th, td {
         font-size: 16px;
         padding: 6px;
         word-break: break-word;
         overflow-wrap: anywhere;
       }
-      /* give abbreviation and name columns a fixed smaller share, image gets the rest */
       th:first-child, td:first-child { width: 15%; }
       th:nth-child(2), td:nth-child(2) { width: 35%; }
       th:nth-child(3), td:nth-child(3) { width: 50%; }
 
-      /* make images scale to their cell */
       img.piece {
         max-width: 100%;
         height: auto;
@@ -60,12 +57,43 @@
       <option value="chess">Chess</option>
       <option value="shogi">Shogi</option>
     </select>
+
+    <label for="themeSelect">Theme:</label>
+    <select id="themeSelect" name="theme"></select>
   </div>
 
   <table id="piecesTable" aria-label="Available pieces table"></table>
 
   <script>
     const contextSelect = document.getElementById('contextSelect');
+    const themeSelect = document.getElementById('themeSelect');
+    const THEMES_BY_CONTEXT = {
+      chess: [
+        { value: 'classicwood', label: 'Classic Wood' },
+        { value: 'green', label: 'Green' }
+      ],
+      shogi: [
+        { value: 'set2', label: 'Set 2' },
+        { value: 'set1', label: 'Set 1' }
+      ]
+    };
+
+    function populateThemesFor(context, preserveSelection = false) {
+      const list = THEMES_BY_CONTEXT[context] || [];
+      const prev = preserveSelection ? themeSelect.value : null;
+      themeSelect.innerHTML = '';
+      list.forEach(opt => {
+        const o = document.createElement('option');
+        o.value = opt.value;
+        o.textContent = opt.label;
+        themeSelect.appendChild(o);
+      });
+      if (preserveSelection && prev) {
+        const found = Array.from(themeSelect.options).some(o => o.value === prev);
+        if (found) themeSelect.value = prev;
+      }
+      if (!themeSelect.value && themeSelect.options.length) themeSelect.selectedIndex = 0;
+    }
 
     async function loadPieces() {
       const table = document.getElementById('piecesTable');
@@ -73,10 +101,9 @@
 
       const payload = {
         context: contextSelect ? contextSelect.value : "chess",
-        theme: "classicwood"
+        theme: themeSelect ? themeSelect.value : "classicwood"
       };
 
-      // Request the piece list from backend
       let resp;
       try {
         resp = await fetch('/onlineboardpainter/api/providepiecelist', {
@@ -97,7 +124,6 @@
       const json = await resp.json();
       const items = (json && json.piecelist_dict && json.piecelist_dict.piecedefinitions) || [];
 
-      // build header
       const thead = document.createElement('thead');
       const htr = document.createElement('tr');
       ['Abbr', 'PieceName', 'Image'].forEach(h => {
@@ -108,7 +134,6 @@
       thead.appendChild(htr);
       table.appendChild(thead);
 
-      // build body
       const tbody = document.createElement('tbody');
       items.forEach(it => {
         const tr = document.createElement('tr');
@@ -138,10 +163,17 @@
       table.appendChild(tbody);
     }
 
-    // reload when context changes
-    contextSelect.addEventListener('change', loadPieces);
+    // update themes when context changes, then reload pieces
+    contextSelect.addEventListener('change', () => {
+      populateThemesFor(contextSelect.value, /*preserveSelection=*/false);
+      loadPieces();
+    });
 
-    // initial load
+    // reload when theme changes
+    themeSelect.addEventListener('change', loadPieces);
+
+    // initial setup + load
+    populateThemesFor(contextSelect.value, /*preserveSelection=*/true);
     loadPieces();
   </script>
 </body>
