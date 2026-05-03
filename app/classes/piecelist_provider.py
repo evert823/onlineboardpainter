@@ -1,4 +1,5 @@
 from app.classes.piece_name_handler import PieceNameHandler
+import os
 
 class PieceListProvider:
     def __init__(self, piecedefinitions_loc="/home/administrator/onlineboardpainter/resources/piecedefinitions/piecedefinitions.csv"):
@@ -29,7 +30,11 @@ class PieceListProvider:
             path = self.resourcespath + "pieceimages_classicwood/"
             extension = "png"
         myfilename = f"white{piecename.lower()}onwhite.{extension}"
-        return f"{path}{myfilename}"
+        if os.path.exists(f"{path}{myfilename}") == True:
+            return f"{path}{myfilename}"
+        else:
+            myfilename = f"_notfoundonwhite.{extension}"
+            return f"{path}{myfilename}"
 
     def provide_piecelist_context_shogi(self, theme="set1"):
         dict2 = {"piecedefinitions": []}
@@ -46,4 +51,11 @@ class PieceListProvider:
             path = self.resourcespath + "shogi_set2/"
         extension = "png"
         myfilename = f"{piecename.lower()}_sente.{extension}"
-        return f"{path}{myfilename}"
+        myfilename_promoted = f"{piecename.lower()}_sente_promoted.{extension}"
+        if os.path.exists(f"{path}{myfilename}") == True:
+            return f"{path}{myfilename}"
+        elif os.path.exists(f"{path}{myfilename_promoted}") == True:
+            return f"{path}{myfilename_promoted}"
+        else:
+            myfilename = f"_notfound.{extension}"
+            return f"{path}{myfilename}"
