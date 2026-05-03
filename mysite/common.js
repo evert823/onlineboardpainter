@@ -108,8 +108,8 @@ function sendText4boardpainter() {
     return;
   }
   const text = document.getElementById('user-text').value;
-  // Get selected theme
-  const theme = document.querySelector('input[name="theme"]:checked').value;
+  const theme = document.getElementById('theme-select').value;
+
   // The API endpoint may differ; you can pass it as a variable if needed
   const apiEndpoint = window.sendTextApiEndpoint || '/onlineboardpainter/api/makeboard';
   fetch(apiEndpoint, {

@@ -23,6 +23,19 @@
     <p id="auth-result"></p>
   </div>
 
+  <label for="contextSelect">Context:</label>
+  <select id="contextSelect" name="context">
+    <option value="chess">Chess</option>
+    <option value="shogi">Shogi</option>
+  </select>
+  <br>
+  <label for="theme-select">Theme:</label>
+  <select id="theme-select" name="theme">
+    <option value="classicwood" selected>Classic wood</option>
+    <option value="green">Green (Bulldog classic style)</option>
+  </select>
+  <br>
+
   <h2>Paste or type your text below:</h2>
   <textarea id="user-text" rows="15" cols="60" placeholder="Paste or type your FEN here (JSON also accepted)"></textarea><br>
   <p>
@@ -33,16 +46,6 @@
   </p>
   <button id="send-btn" onclick="sendText4boardpainter()" disabled>Send to API</button>
   <p id="text-api-result"></p>
-
-  <label>
-    <input type="radio" name="theme" value="classicwood" id="theme-classicwood" checked>
-    Classic wood
-  </label>
-  <label>
-    <input type="radio" name="theme" value="green" id="theme-green">
-    Green (Bulldog classic style)
-  </label>
-  <br>
 
   <div id="image-section" style="display:none;">
     <p>Image filename: <span id="image-filename"></span></p>
