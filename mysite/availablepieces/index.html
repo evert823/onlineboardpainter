@@ -15,14 +15,40 @@
 
     .top-controls { margin-bottom: 14px; display: inline-flex; gap: 8px; align-items: center; }
 
-    /* Mobile-only: make table occupy ~70% of viewport and center it */
+    /* Mobile-only: slight right margin so table is a bit less wide */
     @media (max-width: 600px) {
-      table { max-width: 70vw; margin: 0 auto; }  /* center on mobile and use ~70% width */
+      /* ensure table fits viewport and columns don't grow past available space */
+      table {
+        max-width: 70vw;
+        margin-left: 0;
+        margin-right: 8px;
+        table-layout: fixed;     /* force fixed column widths so images don't expand table */
+        width: 70vw;
+      }
       body { font-size: 18px; margin: 12px; }
       h1 { font-size: 20px; }
-      th, td { font-size: 18px; padding: 8px; }
-      img.piece { max-width: 140px; max-height: 156px; }
+      /* reduce padding slightly on mobile and allow long names to wrap */
+      th, td {
+        font-size: 16px;
+        padding: 6px;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+      }
+      /* give abbreviation and name columns a fixed smaller share, image gets the rest */
+      th:first-child, td:first-child { width: 15%; }
+      th:nth-child(2), td:nth-child(2) { width: 35%; }
+      th:nth-child(3), td:nth-child(3) { width: 50%; }
+
+      /* make images scale to their cell */
+      img.piece {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 4px auto 0;
+        object-fit: contain;
+      }
     }
+
   </style>
 </head>
 <body>
@@ -50,7 +76,7 @@
         theme: "classicwood"
       };
 
-      // Request the piece list from backend (endpoint you provided)
+      // Request the piece list from backend
       let resp;
       try {
         resp = await fetch('/onlineboardpainter/api/providepiecelist', {
@@ -113,9 +139,9 @@
     }
 
     // reload when context changes
-     contextSelect.addEventListener('change', loadPieces);
+    contextSelect.addEventListener('change', loadPieces);
 
-    // load on page open
+    // initial load
     loadPieces();
   </script>
 </body>
