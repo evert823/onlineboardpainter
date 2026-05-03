@@ -2,10 +2,59 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Piecelist</title>
+  <title>Piece Table</title>
   <link rel="icon" href="/myicon.ico" type="image/x-icon">
+  <style>
+    body { font-family: Arial, sans-serif; font-size: 16px; margin: 16px; }
+    h2 { font-size: 16px; margin: 8px 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 420px; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; vertical-align: middle; font-size: 16px; }
+    img.piece { max-width: 90px; max-height: 98px; width: auto; height: auto; display: block; margin: 4px auto 0; }
+  </style>
 </head>
 <body>
-  <h2>Available pieces for Shogi variants</h2>
+  <h2>Available pieces</h2>
+  <table id="piecesTable"></table>
+
+  <script>
+    const items = [
+      { piecesymbol: "L", piecename: "Lance", imagefilepath: "/home/administrator/onlineboardpainter/resources/shogi_set2/lance_sente.png" },
+      { piecesymbol: "RC", piecename: "Reverse_chariot", imagefilepath: "/home/administrator/onlineboardpainter/resources/shogi_set2/reverse_chariot_sente.png" },
+      { piecesymbol: "SM", piecename: "Side_mover", imagefilepath: "/home/administrator/onlineboardpainter/resources/shogi_set2/side_mover_sente.png" },
+      { piecesymbol: "FL", piecename: "Ferocious_leopard", imagefilepath: "/home/administrator/onlineboardpainter/resources/shogi_set2/ferocious_leopard_sente.png" }
+    ];
+
+    const table = document.getElementById("piecesTable");
+
+    const thead = document.createElement('thead');
+    const htr = document.createElement('tr');
+    ["Abbr","PieceName","Image"].forEach(h => { const th = document.createElement('th'); th.textContent = h; htr.appendChild(th); });
+    thead.appendChild(htr);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    items.forEach(it => {
+      const tr = document.createElement('tr');
+
+      const tdShort = document.createElement('td');
+      tdShort.textContent = it.piecesymbol;
+      tr.appendChild(tdShort);
+
+      const tdName = document.createElement('td');
+      tdName.textContent = it.piecename;
+      tr.appendChild(tdName);
+
+      const tdImg = document.createElement('td');
+      const img = document.createElement('img');
+      img.className = 'piece';
+      img.alt = `${it.piecesymbol} ${it.piecename}`;
+      img.src = `/onlineboardpainter/api/pieceimage?image_file_path=${encodeURIComponent(it.imagefilepath)}`;
+      tdImg.appendChild(img);
+      tr.appendChild(tdImg);
+
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  </script>
 </body>
 </html>
