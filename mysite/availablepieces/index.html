@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Piece Table</title>
   <link rel="icon" href="/myicon.ico" type="image/x-icon">
   <style>
     body { font-family: Arial, sans-serif; font-size: 16px; margin: 16px; }
     h2 { font-size: 16px; margin: 8px 0; }
-    table { border-collapse: collapse; width: 100%; max-width: 420px; }
+    /* left-align table by default (laptop/desktop) */
+    table { border-collapse: collapse; width: 100%; max-width: 420px; margin: 0; }
     th, td { border: 1px solid #ccc; padding: 6px; text-align: center; vertical-align: middle; font-size: 16px; }
     img.piece { max-width: 90px; max-height: 98px; width: auto; height: auto; display: block; margin: 4px auto 0; }
+
+    /* Mobile-only: make table occupy ~70% of viewport and center it */
+    @media (max-width: 600px) {
+      table { max-width: 70vw; margin: 0 auto; }  /* center on mobile */
+      body { font-size: 18px; margin: 12px; }
+      h2 { font-size: 18px; }
+      th, td { font-size: 18px; padding: 8px; }
+      img.piece { max-width: 140px; max-height: 156px; }
+    }
   </style>
 </head>
 <body>
   <h2>Available pieces</h2>
-  <table id="piecesTable"></table>
+  <table id="piecesTable" aria-label="Available pieces table"></table>
 
   <script>
     const items = [
@@ -26,12 +37,18 @@
 
     const table = document.getElementById("piecesTable");
 
+    // header
     const thead = document.createElement('thead');
     const htr = document.createElement('tr');
-    ["Abbr","PieceName","Image"].forEach(h => { const th = document.createElement('th'); th.textContent = h; htr.appendChild(th); });
+    ["Abbr", "PieceName", "Image"].forEach(h => {
+      const th = document.createElement('th');
+      th.textContent = h;
+      htr.appendChild(th);
+    });
     thead.appendChild(htr);
     table.appendChild(thead);
 
+    // body
     const tbody = document.createElement('tbody');
     items.forEach(it => {
       const tr = document.createElement('tr');
