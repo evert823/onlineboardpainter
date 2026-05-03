@@ -5,7 +5,8 @@
   <link rel="icon" href="/myicon.ico" type="image/x-icon">
 </head>
 <body>
-  <h1>Online boardpainter tool for chess variants</h1>
+  <h1>Online boardpainter tool</h1>
+  <h2>for Chess variants, Chu Shogi and large Shogi variants</h2>
 
   <!-- Cookie consent banner -->
   <div id="cookie-consent-banner" style="display:none; background:#eee; border:1px solid #ccc; padding:10px; margin-bottom:10px;">
@@ -25,14 +26,13 @@
 
   <label for="contextSelect">Context:</label>
   <select id="contextSelect" name="context">
-    <option value="chess">Chess</option>
+    <option value="chess" selected>Chess</option>
     <option value="shogi">Shogi</option>
   </select>
   <br>
   <label for="theme-select">Theme:</label>
   <select id="theme-select" name="theme">
-    <option value="classicwood" selected>Classic wood</option>
-    <option value="green">Green (Bulldog classic style)</option>
+    <!-- Will be populated by JS -->
   </select>
   <br>
 
@@ -60,9 +60,53 @@ let currentImageFile = "";
 let isAuthenticated = false;
 let cookieConsentGiven = false;
 
-</script>
-<script>
-  window.sendTextApiEndpoint = '/onlineboardpainter/api/makeboard';
+// Theme options for each context
+const themeOptions = {
+  chess: [
+    { value: "classicwood", label: "Classic wood" },
+    { value: "green", label: "Green (Bulldog classic style)" }
+  ],
+  shogi: [
+    { value: "set2", label: "2 kanji" },
+    { value: "set1", label: "1 kanji" }
+  ]
+};
+
+// API endpoints for each context
+const apiEndpoints = {
+  chess: '/onlineboardpainter/api/makeboard',
+  shogi: '/onlineboardpainter/api/makechuboard'
+};
+
+// Populate theme dropdown based on context
+function populateThemeOptions(context) {
+  const themeSelect = document.getElementById('theme-select');
+  themeSelect.innerHTML = '';
+  themeOptions[context].forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt.value;
+    option.textContent = opt.label;
+    themeSelect.appendChild(option);
+  });
+}
+
+// Set API endpoint based on context
+function setApiEndpoint(context) {
+  window.sendTextApiEndpoint = apiEndpoints[context];
+}
+
+// Handle context change
+document.addEventListener('DOMContentLoaded', function() {
+  const contextSelect = document.getElementById('contextSelect');
+  // Set initial state
+  populateThemeOptions(contextSelect.value);
+  setApiEndpoint(contextSelect.value);
+
+  contextSelect.addEventListener('change', function() {
+    populateThemeOptions(this.value);
+    setApiEndpoint(this.value);
+  });
+});
 </script>
 <script src="../common.js"></script>
 </body>
