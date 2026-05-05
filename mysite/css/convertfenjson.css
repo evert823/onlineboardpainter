@@ -13,6 +13,16 @@ label { font-weight: bold; }
     padding: 0 8px;
     height: 28px;
 }
+.copy-btn:hover #copyIcon {
+    fill: #333;
+}
+#copyIcon {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    fill: #888;
+    transition: fill 0.2s;
+}
 .copy-feedback {
     display: none;
     color: green;
@@ -21,4 +31,7 @@ label { font-weight: bold; }
 }
 .output-row {
     position: relative;
+}
+#message {
+    color: #b00;
 }

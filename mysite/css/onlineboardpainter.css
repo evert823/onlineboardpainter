@@ -1,1 +1,25 @@
 .container { max-width: 700px; margin: auto; }
+#image-section {
+  display: none;
+}
+
+#board-image {
+  max-width: 400px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+#download-link {
+  display: inline-block;
+}
+#cookie-consent-banner {
+  display: none;
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#bot-defense-section img {
+  vertical-align: middle;
+  margin-bottom: 8px;
+}
