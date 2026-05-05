@@ -1,4 +1,4 @@
-body { font-family: Arial, sans-serif; font-size: 16px; margin: 16px; }
+body { font-size: 16px; margin: 16px; }
 h1 { font-size: 22px; margin: 10px 0; font-weight: 600; }
 /* left-align table by default (laptop/desktop) */
 table { border-collapse: collapse; width: 100%; max-width: 420px; margin-left: 0; }

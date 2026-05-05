@@ -1,4 +1,4 @@
-body { font-family: system-ui, Arial, sans-serif; padding: 20px; }
+body { padding: 20px; }
 
 /* constrain overall gallery width on laptops and center it, use less horizontal gap */
 .gallery {
