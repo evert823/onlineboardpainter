@@ -1,4 +1,8 @@
-body { font-family: Arial, sans-serif; margin: 40px; }
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 40px; 
+    background-color: #FFF9E5;
+}
 @media (max-width: 640px) {
     body { font-size: 18px; margin: 12px; }
     h1 { font-size: 24px; }
