@@ -1,0 +1,39 @@
+body { font-family: Arial, sans-serif; font-size: 16px; margin: 16px; }
+h1 { font-size: 22px; margin: 10px 0; font-weight: 600; }
+/* left-align table by default (laptop/desktop) */
+table { border-collapse: collapse; width: 100%; max-width: 420px; margin-left: 0; }
+th, td { border: 1px solid #ccc; padding: 6px; text-align: center; vertical-align: middle; font-size: 16px; }
+img.piece { max-width: 90px; max-height: 98px; width: auto; height: auto; display: block; margin: 4px auto 0; }
+
+.top-controls { margin-bottom: 14px; display: inline-flex; gap: 8px; align-items: center; }
+
+/* Mobile-only: slight right margin so table is a bit less wide */
+@media (max-width: 600px) {
+    /* ensure table fits viewport and columns don't grow past available space */
+    table {
+    max-width: 70vw;
+    margin-left: 0;
+    margin-right: 8px;
+    table-layout: fixed;
+    width: 70vw;
+    }
+    body { font-size: 18px; margin: 12px; }
+    h1 { font-size: 20px; }
+    th, td {
+    font-size: 16px;
+    padding: 6px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    }
+    th:first-child, td:first-child { width: 15%; }
+    th:nth-child(2), td:nth-child(2) { width: 35%; }
+    th:nth-child(3), td:nth-child(3) { width: 50%; }
+
+    img.piece {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 4px auto 0;
+    object-fit: contain;
+    }
+}
