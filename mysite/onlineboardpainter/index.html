@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Online board painter</title>
   <link rel="icon" href="/images/myicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="/css/main.css">
@@ -10,6 +12,8 @@
   <div class="container">
   <h1>Online boardpainter tool</h1>
   <h2>for Chess variants, Chu Shogi and large Shogi variants</h2>
+  <p><a href="https://vps1.mcs2web.com/">Overview</a></p>
+  <br>
 
   <!-- Cookie consent banner -->
   <div id="cookie-consent-banner" style="display:none; background:#eee; border:1px solid #ccc; padding:10px; margin-bottom:10px;">
@@ -43,9 +47,6 @@
   <textarea id="user-text" rows="15" cols="60" placeholder="Paste or type your FEN here (JSON also accepted)"></textarea><br>
   <p>
     Find the JSON examples on <a href="https://github.com/evert823/onlineboardpainter/tree/main/resources/position_json_examples" target="_blank">GitHub</a>.
-  </p>
-  <p>
-    Back to <a href="https://vps1.mcs2web.com/">overview</a>.
   </p>
   <button id="send-btn" onclick="sendText4boardpainter()" disabled>Send to API</button>
   <p id="text-api-result"></p>

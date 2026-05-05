@@ -8,7 +8,7 @@ img.piece { max-width: 90px; max-height: 98px; width: auto; height: auto; displa
 .top-controls { margin-bottom: 14px; display: inline-flex; gap: 8px; align-items: center; }
 
 /* Mobile-only: slight right margin so table is a bit less wide */
-@media (max-width: 600px) {
+@media (max-width: 640px) {
     /* ensure table fits viewport and columns don't grow past available space */
     table {
     max-width: 70vw;
