@@ -5,6 +5,7 @@ B,Bishop
 Bf,Buffalo
 Bo,Bomb
 C,Chancellor
+Co,Coordinator
 D~,Drone
 D,Dwarf
 E,Elf
@@ -25,6 +26,7 @@ S~,Sophon
 T,TimeThief
 Tb,Tomb
 V,VerticalMover
+Wd,Withdrawer
 WW,Werewolf
 W,Witch
 X!,Stonewall
