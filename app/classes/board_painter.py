@@ -111,11 +111,22 @@ class BoardPainter:
         if myterrain == "DF":
             myextension = "jpg"
             myfolder = "pieceimages"
+        elif myterrain in ['BE', 'GN', 'RD', 'YW']:
+            myextension = "jpg"
+            myfolder = "othercolors_theme_green"
         else:
             myextension = self.pieceimages_extension
             myfolder = self.pieceimages_folder
 
-        if psymbol[0] == "-":
+        if myterrain == "BE":
+            piececolour = "blue"
+        elif myterrain == "GN":
+            piececolour = "green"
+        elif myterrain == "RD":
+            piececolour = "red"
+        elif myterrain == "YW":
+            piececolour = "yellow"
+        elif psymbol[0] == "-":
             piececolour = "black"
         else:
             piececolour = "white"
