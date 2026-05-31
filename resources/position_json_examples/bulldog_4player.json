@@ -33,5 +33,6 @@
         "  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .",
         "  .|  .|  .| RD| RD| RD| RD| RD| RD| RD| RD|  .|  .|  .",
         "  .|  .|  .| RD| RD| RD| RD| RD| RD| RD| RD|  .|  .|  ."
-    ]
+    ],
+    "comment": "RD for red, BE for blue, YW for yellow, GN for green"
 }
