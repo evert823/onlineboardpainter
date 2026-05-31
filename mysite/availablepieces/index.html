@@ -112,7 +112,8 @@
         img.className = 'piece';
         img.alt = (it.piecesymbol ? it.piecesymbol + ' ' : '') + (it.piecename || '');
         if (it.imagefilepath) {
-          img.src = '/onlineboardpainter/api/pieceimage?image_file_path=' + encodeURIComponent(it.imagefilepath);
+          const url = '/onlineboardpainter/api/pieceimage?image_file_path=' + encodeURIComponent(it.imagefilepath) + '&cb=' + Date.now();
+          img.src = url;
         } else {
           img.alt = 'no image';
         }
