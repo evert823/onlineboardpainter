@@ -64,7 +64,6 @@ class FENHandler:
 
 
     def has_problematic_pieceIDs(self):
-        found = False
         for j in range(self.MyChessPosition.boardheight):
             for i in range(self.MyChessPosition.boardwidth):
                 mysymbol = self.MyChessPosition.squares[j][i]
@@ -77,8 +76,8 @@ class FENHandler:
                            and len(mysymbol) < 3):
                     pass
                 else:
-                    found = True
-        return found
+                    return True
+        return False
 
     def pieceID_for_fen(self, symbol):
         if symbol.startswith('-'):
@@ -167,39 +166,21 @@ class FENHandler:
                     s = item["piecesymbol"]
         return s
 
-
     def parse_one_rank(self, fenrank):
-        '''
-        A number represents the same amount of subsequent empty squares
-        Piece IDs may be enclosed in square brackets OR they may be separated by comma's (max 2 chars per ID)
-        A letter followed by a nonalf represents one piece
-          (if the nonalf is in self.special_nonalf)
-        Examples:
-        rn^n5b~b1qkbr~nn^r
-        r,ln,kn,gb,3q,r,n
-        [r][ln][kn][gb]3[q]rn
-        rn^n[ln]b~b11qkb,gb,r~nn^r[gb]q,ln,q
-        '''
+        if fenrank.find("[") > -1:
+            pieces = self.parse_one_rank_if_square_brackets(fenrank=fenrank)
+        elif fenrank.find(",") > -1:
+            pieces = self.parse_one_rank_if_comma_separated(fenrank=fenrank)
+        else:
+            pieces = self.parse_one_rank_if_no_separator(fenrank=fenrank)
+        return pieces
+
+    def parse_one_rank_if_no_separator(self, fenrank):
         pieces = []
         i = 0
         n = len(fenrank)
-
         while i < n:
             c = fenrank[i]
-            # Handle rank starting with pieceID 8u
-            if i == 0 and len(fenrank) > 2 and fenrank[2] == ',':
-                # Look ahead for up to 2 chars
-                token = ''
-                j = i
-                while j < n and len(token) < 2 and fenrank[j] not in [',', '[']:
-                    token += fenrank[j]
-                    j += 1
-                if token.isdigit():
-                    pieces.extend([''] * int(token))
-                elif token:
-                    pieces.append(token)
-                i = j
-                continue
             # Handle empty squares
             if c.isdigit():
                 num = c
@@ -209,44 +190,54 @@ class FENHandler:
                     i += 1
                 pieces.extend([''] * int(num))
                 continue
-
-            # Handle bracketed piece IDs
-            if c == '[':
-                j = i + 1
-                while j < n and fenrank[j] != ']':
-                    j += 1
-                if j < n:
-                    pieces.append(fenrank[i+1:j])
-                    i = j + 1
-                else:
-                    raise Exception("Inconsistent square brackets detected")
-                continue
-
-            # Handle piece IDs separated by comma (max 2 chars, or number for empties)
-            if c == ',':
-                # Look ahead for up to 2 chars
-                token = ''
-                j = i + 1
-                while j < n and len(token) < 2 and fenrank[j] not in [',', '[']:
-                    token += fenrank[j]
-                    j += 1
-                if token.isdigit():
-                    pieces.extend([''] * int(token))
-                elif token:
-                    pieces.append(token)
-                i = j
-                continue
-
             # Handle letter + special nonalf as one piece
             if c.isalpha() and i + 1 < n and fenrank[i+1] in self.special_nonalf:
                 pieces.append(c + fenrank[i+1])
                 i += 2
                 continue
-
             # Handle normal single-char piece
             pieces.append(c)
             i += 1
+        return pieces
 
+    def parse_one_rank_if_comma_separated(self, fenrank):
+        pieces = []
+        a = fenrank.split(",")
+        for item in a:
+            try:
+                addemptysquares = int(item)
+                pieces.extend([''] * addemptysquares)
+            except:
+                pieces.append(item.strip())
+        return pieces
+
+    def parse_one_rank_if_square_brackets(self, fenrank):
+        pieces = []
+
+        i = 0
+        n = len(fenrank)
+        while i < n:
+            c = fenrank[i]
+            # Handle empty squares
+            if c.isdigit():
+                num = c
+                i += 1
+                while i < n and fenrank[i].isdigit():
+                    num += fenrank[i]
+                    i += 1
+                pieces.extend([''] * int(num))
+                continue
+            # Handle one piece between square brackets
+            if c == "[":
+                i += 1
+                mysymbol = ""
+                while i < n and fenrank[i] != "]":
+                    mysymbol += fenrank[i]
+                    i += 1
+                pieces.append(mysymbol)
+            else:
+                raise Exception(f"Incomplete square brackets detected")
+            i += 1
         return pieces
 
     def create_JSON(self):

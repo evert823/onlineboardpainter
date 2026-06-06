@@ -35,8 +35,6 @@ def test_parse_one_rank():
     assert a == ['r', '', '', '', 'n^', 'n', 'b~', 'b', 'q', 'K:']
     a = myFENHandler.parse_one_rank("r13n^nb~bqK:")
     assert a == ['r', '', '', '', '', '', '', '', '', '', '', '', '', '', 'n^', 'n', 'b~', 'b', 'q', 'K:']
-    a = myFENHandler.parse_one_rank("[r][n^][n][b~][b]qk")
-    assert a == ['r', 'n^', 'n', 'b~', 'b', 'q', 'k']
     a = myFENHandler.parse_one_rank("[AX][2][BX][CX][DX][EX]2[FX]")
     assert a == ['AX', '2', 'BX', 'CX', 'DX', 'EX', '', '', 'FX']
     a = myFENHandler.parse_one_rank("r,3,n^,n,b~,b,q,k")
@@ -45,10 +43,6 @@ def test_parse_one_rank():
     assert a == ['r', '', '', '', 'n^', 'n', 'b~', 'b', '', '', '', '', '', '', '', '', '', '', '', 'q', 'k']
     a = myFENHandler.parse_one_rank("r,3,n^,n,b~,b,11,q,kn")
     assert a == ['r', '', '', '', 'n^', 'n', 'b~', 'b', '', '', '', '', '', '', '', '', '', '', '', 'q', 'kn']
-    a = myFENHandler.parse_one_rank("[r][n^]2[N]e,12,fg,H7,IJ,[b~][b]qk")
-    assert a == ['r', 'n^', '', '', 'N', 'e',
-                '', '', '', '', '', '', '', '', '', '', '', '',
-                'fg', 'H7', 'IJ', 'b~', 'b', 'q', 'k']
 
 def testcase_FEN(filename):
     testcasespath = os.path.join("C:\\", "Users", "Evert Jan", "pythonprojects",
@@ -86,6 +80,7 @@ myFENHandler.pieceID_separation_strategy = "comma"
 myjson = testcase_FEN(filename="testcase_FEN_chess_01_simple.json")
 myjson = testcase_FEN(filename="testcase_FEN_chess_02_simple_special_nonalf.json")
 myjson = testcase_FEN(filename="testcase_FEN_chess_03_comma.json")
+myjson = testcase_FEN(filename="fourplayergoats.json")
 myFENHandler.pieceID_separation_strategy = "squarebracket"
 myjson = testcase_FEN(filename="testcase_FEN_chess_04_squarebrackets.json")
 del myFENHandler
