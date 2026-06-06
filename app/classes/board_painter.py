@@ -102,7 +102,31 @@ class BoardPainter:
         else:
             return "black"
 
+    def parse_piece_identifier(self, psymbol):
+        clean_symbol = psymbol.strip()
+        clean_symbol = clean_symbol.replace(" ", "")
+        clean_symbol = clean_symbol.replace("\t", "")
+        if clean_symbol.find("-") > -1:
+            armyid = "black"
+            pieceid = clean_symbol.replace("-", "")
+            return armyid, pieceid
+        if clean_symbol.find(".") < 0:
+            armyid = "white"
+            pieceid = clean_symbol
+            return armyid, pieceid
+        a = clean_symbol.split(".")
+        mapping = {"we": "white",
+                   "bk": "black",
+                   "be": "blue",
+                   "gn": "green",
+                   "rd": "red",
+                   "yw": "yellow"}
+        armyid = mapping.get(a[0].lower())
+        pieceid = a[1]
+        return armyid, pieceid
+
     def paste_piece_image(self, j: int, i: int, psymbol: str):
+        piececolour, symbol2 = self.parse_piece_identifier(psymbol=psymbol)
         try:
             myterrain = self.MyChessPosition.terrain[j][i]
         except:
@@ -111,27 +135,15 @@ class BoardPainter:
         if myterrain == "DF":
             myextension = "jpg"
             myfolder = "pieceimages"
-        elif myterrain in ['BE', 'GN', 'RD', 'YW']:
+        elif piececolour in ['blue', 'green', 'red', 'yellow']:
             myextension = "jpg"
             myfolder = "othercolors_theme_green"
         else:
             myextension = self.pieceimages_extension
             myfolder = self.pieceimages_folder
 
-        if myterrain == "BE":
-            piececolour = "blue"
-        elif myterrain == "GN":
-            piececolour = "green"
-        elif myterrain == "RD":
-            piececolour = "red"
-        elif myterrain == "YW":
-            piececolour = "yellow"
-        elif psymbol[0] == "-":
-            piececolour = "black"
-        else:
-            piececolour = "white"
-        piecename = self.MyPieceNameHandler.lookup_piecename_by_symbol(psymbol.replace("-", ""))
-        symbol_found = self._symbol_found(psymbol=psymbol, ppiecename=piecename)
+        piecename = self.MyPieceNameHandler.lookup_piecename_by_symbol(symbol2)
+        symbol_found = self._symbol_found(psymbol=symbol2, ppiecename=piecename)
 
         x = i * self.piecesize
         x += self.edgesize_left
