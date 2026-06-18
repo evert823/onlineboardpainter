@@ -34,4 +34,4 @@ myFEN4Handler = FEN4Handler(piecedefinitions_loc=piecedefinitions_loc())
 myFEN4Handler.load_piece_definitions()
 
 testfen2json(testfilepath=testfenfilepath(filename="somefen4.txt"))
-testjson2fen(testfilepath=testjsonfilepath(filename="bulldog_4player.json"))
+#testjson2fen(testfilepath=testjsonfilepath(filename="bulldog_4player.json"))

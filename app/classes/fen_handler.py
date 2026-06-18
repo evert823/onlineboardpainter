@@ -241,6 +241,10 @@ class FENHandler:
         return pieces
 
     def create_JSON(self):
+        minlen = self.MyChessPosition.max_len_symbol()
+        if minlen < 3:
+            minlen = 3
+
         positiondict = {}
         positiondict["boardwidth"] = self.MyChessPosition.boardwidth
         positiondict["boardheight"] = self.MyChessPosition.boardheight
@@ -258,7 +262,7 @@ class FENHandler:
             myvisualrank = ""
             for i in range(self.MyChessPosition.boardwidth):
                 mysymbol = self.MyChessPosition.squares[rj][i]
-                while len(mysymbol) < 3:
+                while len(mysymbol) < minlen:
                     mysymbol = " " + mysymbol
                 myvisualrank += mysymbol
                 if i < self.MyChessPosition.boardwidth - 1:

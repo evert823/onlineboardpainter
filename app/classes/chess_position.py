@@ -72,3 +72,11 @@ class ChessPosition:
     def print_squares(self):
         for j in range(self.boardheight):
             print(self.squares[j])
+
+    def max_len_symbol(self):
+        mymax = -1
+        for j in range(self.boardheight):
+            for i in range(self.boardwidth):
+                if len(self.squares[j][i]) > mymax:
+                    mymax = len(self.squares[j][i])
+        return mymax
