@@ -97,6 +97,14 @@ class BoardPainter:
             return "black"
 
     def parse_piece_identifier(self, psymbol):
+        '''
+        The piece identifier in a JSON contains a color code
+        Default is white
+        Hyphen means black
+        Otherwise dot-separated color + piece
+        When the colour is explicitly provided with dot-separation, we tolerate one-letter as well as two-letter
+        e.g. K white King -K black King y.K yellow King yw.K yellow King
+        '''
         clean_symbol = psymbol.strip()
         clean_symbol = clean_symbol.replace(" ", "")
         clean_symbol = clean_symbol.replace("\t", "")
@@ -109,7 +117,12 @@ class BoardPainter:
             pieceid = clean_symbol
             return armyid, pieceid
         a = clean_symbol.split(".")
-        mapping = {"we": "white",
+        mapping = {"w": "white",
+                   "b": "blue",
+                   "g": "green",
+                   "r": "red",
+                   "y": "yellow",
+                   "we": "white",
                    "bk": "black",
                    "be": "blue",
                    "gn": "green",

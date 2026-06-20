@@ -3,20 +3,20 @@
     "boardheight": 14,
     "colourtomove": 1,
     "squares": [
-        "  X!|  X!|  X!|yw.R|yw.N|yw.G|yw.K|yw.Q|yw.B|yw.W|yw.R|  X!|  X!|  X!",
-        "  X!|  X!|  X!|yw.p|yw.p|yw.p|yw.p|yw.p|yw.p|yw.p|yw.p|  X!|  X!|  X!",
-        "  X!|  X!|  X!|   .|   .|   .|   .|   .|   .|   .|   .|  X!|  X!|  X!",
-        "be.R|be.p|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|gn.p|gn.R",
-        "be.W|be.p|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|gn.p|gn.N",
-        "be.B|be.p|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|gn.p|gn.G",
-        "be.K|be.p|   .|   .|   .|   .|  X!|  X!|   .|   .|   .|   .|gn.p|gn.Q",
-        "be.Q|be.p|   .|   .|   .|   .|  X!|  X!|   .|   .|   .|   .|gn.p|gn.K",
-        "be.G|be.p|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|gn.p|gn.B",
-        "be.N|be.p|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|gn.p|gn.W",
-        "be.R|be.p|   .|   .|   .|   .|   .|   .|   .|   .|   .|   .|gn.p|gn.R",
-        "  X!|  X!|  X!|   .|   .|   .|   .|   .|   .|   .|   .|  X!|  X!|  X!",
-        "  X!|  X!|  X!|rd.p|rd.p|rd.p|rd.p|rd.p|rd.p|rd.p|rd.p|  X!|  X!|  X!",
-        "  X!|  X!|  X!|rd.R|rd.W|rd.B|rd.Q|rd.K|rd.G|rd.N|rd.R|  X!|  X!|  X!"
+        " X!| X!| X!|y.R|y.N|y.G|y.K|y.Q|y.B|y.W|y.R| X!| X!| X!",
+        " X!| X!| X!|y.p|y.p|y.p|y.p|y.p|y.p|y.p|y.p| X!| X!| X!",
+        " X!| X!| X!|  .|  .|  .|  .|  .|  .|  .|  .| X!| X!| X!",
+        "b.R|b.p|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|g.p|g.R",
+        "b.W|b.p|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|g.p|g.N",
+        "b.B|b.p|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|g.p|g.G",
+        "b.K|b.p|  .|  .|  .|  .| X!| X!|  .|  .|  .|  .|g.p|g.Q",
+        "b.Q|b.p|  .|  .|  .|  .| X!| X!|  .|  .|  .|  .|g.p|g.K",
+        "b.G|b.p|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|g.p|g.B",
+        "b.N|b.p|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|g.p|g.W",
+        "b.R|b.p|  .|  .|  .|  .|  .|  .|  .|  .|  .|  .|g.p|g.R",
+        " X!| X!| X!|  .|  .|  .|  .|  .|  .|  .|  .| X!| X!| X!",
+        " X!| X!| X!|r.p|r.p|r.p|r.p|r.p|r.p|r.p|r.p| X!| X!| X!",
+        " X!| X!| X!|r.R|r.W|r.B|r.Q|r.K|r.G|r.N|r.R| X!| X!| X!"
     ],
-    "comment": "rd for red, be for blue, yw for yellow, gn for green"
+    "comment": "r for red, b for blue, y for yellow, g for green"
 }
