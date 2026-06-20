@@ -3,6 +3,9 @@ from app.classes.board_painter import BoardPainter
 from app.classes.chu_board_painter import ChuBoardPainter
 from app.classes.fen_handler import FENHandler
 from app.classes.fen4_handler import FEN4Handler
+from app.models.fen_json_converter_input import FENJsonConverterInput
+import config
+import os
 import json
 
 '''
@@ -45,14 +48,58 @@ class FormatDispatcher:
 
         try:
             self.MyChessPosition.load_from_dict(positiondict=mydict)
-            for j in range(self.boardheight):
-                for i in range(self.boardwidth):
-                    mysymbol = self.squares[j][i].strip()
+            for j in range(self.MyChessPosition.boardheight):
+                for i in range(self.MyChessPosition.boardwidth):
+                    mysymbol = self.MyChessPosition.squares[j][i].strip()
                     if mysymbol != "." and mysymbol.find(".") > -1:
                         return True, True
             return True, False
         except:
             return False, False
+
+    def prepare_piecedefinitions(self, context):
+        if context == "chess":
+            self.MyFENHandler.piecedefinitions_loc = os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "piecedefinitions.csv")
+            self.MyFEN4Handler.piecedefinitions_loc = os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "piecedefinitions.csv")
+        else:
+            self.MyFENHandler.piecedefinitions_loc = os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "chushogipiecedefinitions.csv")
+            self.MyFEN4Handler.piecedefinitions_loc = os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "chushogipiecedefinitions.csv")
+        self.MyFENHandler.load_piece_definitions()
+        self.MyFEN4Handler.load_piece_definitions()
+
+    def make_board(self, inputtext: str, context: str, theme: str):
+        self.prepare_piecedefinitions(context=context)
+        inputformat = self.classify_input(inputtext=input.text)
+        if inputformat == "JSON":
+            myjson = inputtext
+        if inputformat == "JSON4":
+            myjson = inputtext
+        if inputformat == "FEN":
+            myjson = self.MyFENHandler.convert_fen_to_JSON(fentext=inputtext)
+        if inputformat == "FEN4":
+            myjson = self.MyFEN4Handler.convert_fen_to_JSON(fentext=inputtext)
+        if context == "chess":
+            pass
+        if context == "shogi":
+            pass
+
+    def convert_format(self, input: FENJsonConverterInput):
+        self.prepare_piecedefinitions(context=input.context)
+        self.MyFENHandler.pieceID_separation_strategy = input.pieceID_separation_strategy
+        self.MyFEN4Handler.pieceID_separation_strategy = input.pieceID_separation_strategy
+        inputformat = self.classify_input(inputtext=input.text)
+        if inputformat == "JSON":
+            myfen = self.MyFENHandler.convert_JSON_to_fen(jsontext=input.text)
+            return myfen
+        if inputformat == "JSON4":
+            myfen = self.MyFEN4Handler.convert_JSON_to_fen(jsontext=input.text)
+            return myfen
+        if inputformat == "FEN":
+            myjson = self.MyFENHandler.convert_fen_to_JSON(fentext=input.text)
+            return myjson
+        if inputformat == "FEN4":
+            myjson = self.MyFEN4Handler.convert_fen_to_JSON(fentext=input.text)
+            return myjson
 
     def classify_input(self, inputtext: str):
         is_json, is_json4 = self._classify_json(inputtext=inputtext)
@@ -63,8 +110,3 @@ class FormatDispatcher:
         if inputtext[1] == "-" and inputtext.find("\n") > -1:
             return "FEN4"
         return "FEN"
-
-
-
-
-

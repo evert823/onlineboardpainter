@@ -3,20 +3,17 @@ Local testing of class FENHandler
 Without FastAPI
 '''
 from app.classes.fen_handler import FENHandler
+import config
 import os
 import json
 
 def piecedefinitions_loc():
-    s = os.path.join("C:\\", "Users", "Evert Jan", "Documents",
-                     "GitHub", "onlineboardpainter", "resources",
-                     "piecedefinitions", "piecedefinitions.csv")
+    s = os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "piecedefinitions.csv")
     return s
 
 
 def chushogipiecedefinitions_loc():
-    s = os.path.join("C:\\", "Users", "Evert Jan", "Documents",
-                     "GitHub", "onlineboardpainter", "resources",
-                     "piecedefinitions", "chushogipiecedefinitions.csv")
+    s = os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "chushogipiecedefinitions.csv")
     return s
 
 

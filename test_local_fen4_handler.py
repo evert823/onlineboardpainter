@@ -1,10 +1,9 @@
 from app.classes.fen4_handler import FEN4Handler
+import config
 import os
 
 def piecedefinitions_loc():
-    s = os.path.join("C:\\", "Users", "Evert Jan", "Documents",
-                     "GitHub", "onlineboardpainter", "resources",
-                     "piecedefinitions", "piecedefinitions.csv")
+    s = os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "piecedefinitions.csv")
     return s
 
 def testfenfilepath(filename):
