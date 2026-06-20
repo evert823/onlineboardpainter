@@ -10,6 +10,7 @@ from app.models.fen_json_converter_input import FENJsonConverterInput
 from app.services.convertfenjson import process_fen_json
 from app.models.request_piecelist_input import RequestPieceListInput
 from app.services.provide_piecelist import process_request_for_piecelist
+import config
 import os
 
 router = APIRouter()
@@ -36,7 +37,7 @@ def receive_text(input: TextInput):
 
 @router.get("/image/{image_file}")
 def get_image(image_file: str):
-    output_dir = "/home/administrator/onlineboardpainter/useroutput/boardimages"
+    output_dir = output_dir = os.path.join(config.USEROUTPUT_ROOT, "boardimages")
     file_path = os.path.join(output_dir, image_file)
     return FileResponse(path=file_path, media_type='image/png')
 

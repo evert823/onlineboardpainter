@@ -21,7 +21,7 @@ def process_text(input: BoardPainterInput):
             return {"message": f"Trying to detect either FEN or JSON but neither worked. error: {e}"}
 
     file_name = tempfilename()
-    output_dir = "/home/administrator/onlineboardpainter/useroutput"
+    output_dir = config.USEROUTPUT_ROOT
     file_path = os.path.join(output_dir, "json", f"{file_name}.json")
     file2 = open(file_path, "w",  encoding="utf-8")
     file2.write(myjsontext)
