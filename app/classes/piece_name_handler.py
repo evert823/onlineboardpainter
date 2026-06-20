@@ -1,8 +1,11 @@
+import config
+import os
+
 class PieceNameHandler:
     def __init__(self):
         self.piecedict = {"piecedefinitions" : []}
 
-    def load_piece_definitions(self, filename="/home/administrator/onlineboardpainter/resources/piecedefinitions/piecedefinitions.csv"):
+    def load_piece_definitions(self, filename=os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "piecedefinitions.csv")):
         File1 = open(filename, 'r')
         Lines = File1.readlines()
         File1.close()

@@ -1,11 +1,13 @@
+import os
+import config
 from app.models.fen_json_converter_input import FENJsonConverterInput
 from app.classes.fen_handler import FENHandler
 
 def process_fen_json(input: FENJsonConverterInput):
     if input.context == "chess":
-        fenh = FENHandler(piecedefinitions_loc="/home/administrator/onlineboardpainter/resources/piecedefinitions/piecedefinitions.csv")
+        fenh = FENHandler(piecedefinitions_loc=os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "piecedefinitions.csv"))
     else:
-        fenh = FENHandler(piecedefinitions_loc="/home/administrator/onlineboardpainter/resources/piecedefinitions/chushogipiecedefinitions.csv")
+        fenh = FENHandler(piecedefinitions_loc=os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "chushogipiecedefinitions.csv"))
     fenh.load_piece_definitions()
 
     if input.direction == "fen2json":

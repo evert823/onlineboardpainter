@@ -1,5 +1,6 @@
 from app.models.boardpainter_input import BoardPainterInput
 from datetime import datetime
+import config
 import os
 from app.classes.board_painter import BoardPainter
 from app.classes.fen_handler import FENHandler
@@ -7,7 +8,7 @@ from app.classes.fen_handler import FENHandler
 def process_text(input: BoardPainterInput):
     # Your logic here
 
-    fenh = FENHandler(piecedefinitions_loc="/home/administrator/onlineboardpainter/resources/piecedefinitions/piecedefinitions.csv")
+    fenh = FENHandler(piecedefinitions_loc=os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "piecedefinitions.csv"))
     fenh.load_piece_definitions()
 
     myjsontext = input.text

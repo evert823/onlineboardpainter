@@ -1,5 +1,6 @@
 from app.models.chuboardpainter_input import ChuBoardPainterInput
 from datetime import datetime
+import config
 import os
 from app.classes.chu_board_painter import ChuBoardPainter
 from app.classes.fen_handler import FENHandler
@@ -7,7 +8,7 @@ from app.classes.fen_handler import FENHandler
 def process_text4chu(input: ChuBoardPainterInput):
     # Your logic here
 
-    fenh = FENHandler(piecedefinitions_loc="/home/administrator/onlineboardpainter/resources/piecedefinitions/chushogipiecedefinitions.csv")
+    fenh = FENHandler(piecedefinitions_loc=os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "chushogipiecedefinitions.csv"))
     fenh.load_piece_definitions()
 
     myjsontext = input.text
@@ -42,7 +43,7 @@ def create_board(file_name, output_dir, theme):
     image_path = os.path.join(output_dir, "boardimages", f"{file_name}.png")
 
     if theme == "set2":
-        myboardpainter.pieceimages_folder = "/home/administrator/onlineboardpainter/resources/shogi_set2"
+        myboardpainter.pieceimages_folder = os.path.join(config.RESOURCES_ROOT, "shogi_set2")
 
     myboardpainter.load_file(file_path)
     myboardpainter.create_board_image_and_save(image_path)

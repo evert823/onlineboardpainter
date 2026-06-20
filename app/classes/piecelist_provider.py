@@ -1,11 +1,12 @@
 from app.classes.piece_name_handler import PieceNameHandler
 import os
+import config
 
 class PieceListProvider:
-    def __init__(self, piecedefinitions_loc="/home/administrator/onlineboardpainter/resources/piecedefinitions/piecedefinitions.csv"):
+    def __init__(self, piecedefinitions_loc=os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "piecedefinitions.csv")):
         self.MyPieceNameHandler = PieceNameHandler()
         self.piecedefinitions_loc = piecedefinitions_loc
-        self.resourcespath = "/home/administrator/onlineboardpainter/resources/"
+        self.resourcespath = config.RESOURCES_ROOT
 
     def load_piece_definitions(self):
         self.MyPieceNameHandler.load_piece_definitions(filename=self.piecedefinitions_loc)
@@ -24,10 +25,10 @@ class PieceListProvider:
 
     def get_imagefilename_context_chess(self, piecename, theme="green"):
         if theme == "green":
-            path = self.resourcespath + "pieceimages/"
+            path = self.resourcespath + "/pieceimages/"
             extension = "jpg"
         else:
-            path = self.resourcespath + "pieceimages_classicwood/"
+            path = self.resourcespath + "/pieceimages_classicwood/"
             extension = "png"
         myfilename = f"white{piecename.lower()}onwhite.{extension}"
         if os.path.exists(f"{path}{myfilename}") == True:
@@ -46,9 +47,9 @@ class PieceListProvider:
 
     def get_imagefilename_context_shogi(self, piecename, theme="set1"):
         if theme == "set1":
-            path = self.resourcespath + "shogi_set1/"
+            path = self.resourcespath + "/shogi_set1/"
         else:
-            path = self.resourcespath + "shogi_set2/"
+            path = self.resourcespath + "/shogi_set2/"
         extension = "png"
         myfilename = f"{piecename.lower()}_sente.{extension}"
         myfilename_promoted = f"{piecename.lower()}_sente_promoted.{extension}"

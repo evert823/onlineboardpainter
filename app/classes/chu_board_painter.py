@@ -1,6 +1,8 @@
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
+import os
+import config
 from app.classes.chess_position import ChessPosition
 from app.classes.piece_name_handler import PieceNameHandler
 
@@ -13,7 +15,7 @@ class ChuBoardPainter:
     def __init__(self):
         self.MyChessPosition = ChessPosition()
         self.MyPieceNameHandler = PieceNameHandler()
-        self.pieceimages_folder = "/home/administrator/onlineboardpainter/resources/shogi_set1"
+        self.pieceimages_folder = os.path.join(config.RESOURCES_ROOT, "shogi_set1")
         self.pieceimages_extension = "png"
 
         #TODO make dynamic, get from json
@@ -30,7 +32,7 @@ class ChuBoardPainter:
         self.load_piece_definitions()
 
     def load_piece_definitions(self):
-        self.MyPieceNameHandler.load_piece_definitions(filename="/home/administrator/onlineboardpainter/resources/piecedefinitions/chushogipiecedefinitions.csv")
+        self.MyPieceNameHandler.load_piece_definitions(filename=os.path.join(config.RESOURCES_ROOT, "piecedefinitions", "chushogipiecedefinitions.csv"))
         symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("K")
         assert symbol_found == True and mytest == "King"
         symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("L")

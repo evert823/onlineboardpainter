@@ -1,6 +1,8 @@
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
+import os
+import config
 from app.classes.chess_position import ChessPosition
 from app.classes.piece_name_handler import PieceNameHandler
 
@@ -168,10 +170,12 @@ class BoardPainter:
             imagefilename = f"{piececolour}{piecename.lower()}on{squarecolour}.{myextension}"
 
         try:
-            pieceimage = Image.open(f"/home/administrator/onlineboardpainter/resources/{myfolder}/{imagefilename}", mode='r')
+            path = os.path.join(config.RESOURCES_ROOT, myfolder, imagefilename)
+            pieceimage = Image.open(path, mode='r')
         except:
             imagefilename = f"_notfoundon{squarecolour}.{myextension}"
-            pieceimage = Image.open(f"/home/administrator/onlineboardpainter/resources/{myfolder}/{imagefilename}", mode='r')
+            path = os.path.join(config.RESOURCES_ROOT, myfolder, imagefilename)
+            pieceimage = Image.open(path, mode='r')
 
         pieceimage.convert('RGB')
 
