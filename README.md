@@ -4,15 +4,16 @@ Online boardpainter for chess variants
 # Original project
 https://github.com/evert823/chess_variant_boardpainter
 
-However, here we expose the functionality online using:
+However, here we deploy the functionality online using:
 html --> A-record --> Linux VPS --> Apache --> FastAPI
 
 # Deploy to locations
 - python files --> /home/administrator/onlineboardpainter/
 - html mysite\onlineboardpainter --> /var/www/dev/mysite/onlineboardpainter/
+- adjust config.py
 
 # dependencies on other repositories
-https://github.com/evert823/chu_shogi_piece_images --> for recreating piece image files or creating them differently
+https://github.com/evert823/chu_shogi_piece_images --> for recreating piece image files or creating them in a different way
 
 # clean script in crontab
 chmod +x /home/administrator/onlineboardpainter/scripts/clean_useroutput.sh
