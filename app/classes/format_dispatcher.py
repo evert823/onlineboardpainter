@@ -3,7 +3,6 @@ from app.classes.board_painter import BoardPainter
 from app.classes.chu_board_painter import ChuBoardPainter
 from app.classes.fen_handler import FENHandler
 from app.classes.fen4_handler import FEN4Handler
-from app.models.fen_json_converter_input import FENJsonConverterInput
 import config
 import os
 import json
@@ -83,22 +82,22 @@ class FormatDispatcher:
         if context == "shogi":
             pass
 
-    def convert_format(self, input: FENJsonConverterInput):
-        self.prepare_piecedefinitions(context=input.context)
-        self.MyFENHandler.pieceID_separation_strategy = input.pieceID_separation_strategy
-        self.MyFEN4Handler.pieceID_separation_strategy = input.pieceID_separation_strategy
-        inputformat = self.classify_input(inputtext=input.text)
+    def convert_format(self, inputtext: str, context: str, pieceID_separation_strategy: str):
+        self.prepare_piecedefinitions(context=context)
+        self.MyFENHandler.pieceID_separation_strategy = pieceID_separation_strategy
+        self.MyFEN4Handler.pieceID_separation_strategy = pieceID_separation_strategy
+        inputformat = self.classify_input(inputtext=inputtext)
         if inputformat == "JSON":
-            myfen = self.MyFENHandler.convert_JSON_to_fen(jsontext=input.text)
+            myfen = self.MyFENHandler.convert_JSON_to_fen(jsontext=inputtext)
             return myfen
         if inputformat == "JSON4":
-            myfen = self.MyFEN4Handler.convert_JSON_to_fen(jsontext=input.text)
+            myfen = self.MyFEN4Handler.convert_JSON_to_fen(jsontext=inputtext)
             return myfen
         if inputformat == "FEN":
-            myjson = self.MyFENHandler.convert_fen_to_JSON(fentext=input.text)
+            myjson = self.MyFENHandler.convert_fen_to_JSON(fentext=inputtext)
             return myjson
         if inputformat == "FEN4":
-            myjson = self.MyFEN4Handler.convert_fen_to_JSON(fentext=input.text)
+            myjson = self.MyFEN4Handler.convert_fen_to_JSON(fentext=inputtext)
             return myjson
 
     def classify_input(self, inputtext: str):

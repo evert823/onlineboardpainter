@@ -1,7 +1,6 @@
 import config
 import os
 from app.classes.format_dispatcher import FormatDispatcher
-from app.models.fen_json_converter_input import FENJsonConverterInput
 
 def testcase_json_filepath():
     return os.path.join(config.RESOURCES_ROOT, "position_json_examples",
@@ -38,11 +37,9 @@ def test_convert(testfilepath, context, pieceID_separation_strategy):
     file1 = open(testfilepath, 'r', encoding='utf-8')
     mytext = file1.read()
     file1.close()
-    myinput = FENJsonConverterInput(context=context,
-                                    text=mytext,
-                                    direction="fen2json", #we will no longer need this
-                                    pieceID_separation_strategy=pieceID_separation_strategy)
-    mynewtext = MyFormatDispatcher.convert_format(input=myinput)
+    mynewtext = MyFormatDispatcher.convert_format(inputtext=mytext,
+                                                  pieceID_separation_strategy=pieceID_separation_strategy,
+                                                  context=context)
     print(mynewtext)
 
 MyFormatDispatcher = FormatDispatcher()
