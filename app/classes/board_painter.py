@@ -125,8 +125,9 @@ class BoardPainter:
         pieceid = a[1]
         return armyid, pieceid
 
-    def paste_piece_image(self, j: int, i: int, psymbol: str):
-        piececolour, symbol2 = self.parse_piece_identifier(psymbol=psymbol)
+    def paste_piece_image(self, j: int, i: int):
+        mysquare = self.MyChessPosition.squares[j][i]
+        piececolour, symbol2 = self.parse_piece_identifier(psymbol=mysquare)
         try:
             myterrain = self.MyChessPosition.terrain[j][i]
         except:
@@ -192,8 +193,7 @@ class BoardPainter:
 
         for j in range(self.MyChessPosition.boardheight):
             for i in range(self.MyChessPosition.boardwidth):
-                symbol = self.MyChessPosition.squares[j][i]
-                self.paste_piece_image(j, i, symbol)
+                self.paste_piece_image(j, i)
 
     def create_board_image_and_save(self, pimagefilename):
         self.create_board_image()

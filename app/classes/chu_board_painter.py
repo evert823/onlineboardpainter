@@ -118,23 +118,24 @@ class ChuBoardPainter:
             return False
         return True
 
-    def paste_piece_image(self, j: int, i: int, psymbol: str):
+    def paste_piece_image(self, j: int, i: int):
+        mysquare = self.MyChessPosition.squares[j][i]
         #For Chu Shogi the square content should end with asterisk (*) to indicate a promoted piece
         #E.g. B = initial Bishop, B* is FL promoted to Bishop
-        if psymbol[0] == "-":
+        if mysquare[0] == "-":
             piececolour = "gote"
         else:
             piececolour = "sente"
 
-        if psymbol.endswith("*"):
+        if mysquare.endswith("*"):
             ispromoted = True
         else:
             ispromoted = False
         
-        mysymbol = psymbol.replace("-", "").replace("*", "")
+        mysymbol = mysquare.replace("-", "").replace("*", "")
 
         piecename = self.MyPieceNameHandler.lookup_piecename_by_symbol(mysymbol)
-        symbol_found = self._symbol_found(psymbol=psymbol, ppiecename=piecename)
+        symbol_found = self._symbol_found(psymbol=mysquare, ppiecename=piecename)
 
         x = i * self.piecewidth
         x += self.edgesize_left
@@ -171,8 +172,7 @@ class ChuBoardPainter:
 
         for j in range(self.MyChessPosition.boardheight):
             for i in range(self.MyChessPosition.boardwidth):
-                symbol = self.MyChessPosition.squares[j][i]
-                self.paste_piece_image(j, i, symbol)
+                self.paste_piece_image(j, i)
 
         self.add_gridlines()
 
