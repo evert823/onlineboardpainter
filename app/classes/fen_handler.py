@@ -19,10 +19,10 @@ class FENHandler:
 
     def load_piece_definitions(self):
         self.MyPieceNameHandler.load_piece_definitions(filename=self.piecedefinitions_loc)
-        mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("K")
-        assert mytest == "King"
-        mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol(".")
-        assert mytest == ""
+        symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("K")
+        assert symbol_found == True and mytest == "King"
+        symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol(".")
+        assert symbol_found == True and mytest == ""
 
     def convert_JSON_to_fen(self, jsontext):
         self.MyChessPosition.load_from_jsontext(jsontext=jsontext)

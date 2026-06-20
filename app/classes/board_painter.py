@@ -21,10 +21,10 @@ class BoardPainter:
 
     def load_piece_definitions(self):
         self.MyPieceNameHandler.load_piece_definitions()
-        mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("K")
-        assert mytest == "King"
-        mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol(".")
-        assert mytest == ""
+        symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("K")
+        assert symbol_found == True and mytest == "King"
+        symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol(".")
+        assert symbol_found == True and mytest == ""
 
     def load_file(self, pfilename):
         self.MyChessPosition.load_from_json(pfilename)
@@ -85,12 +85,6 @@ class BoardPainter:
                 myabc = str(i)
             draw.text((x, y),myabc,(255,255,255),font=font)
 
-    def _symbol_found(self, psymbol: str, ppiecename: str):
-        teststring = psymbol.replace("-", "").replace(" ", "").replace(".", "")
-        if teststring != "" and ppiecename == "":
-            return False
-        return True
-
     def get_squarecolour(self, j: int, i: int) -> str:
         if self.a1_is_white:
             mydummy: int = 0
@@ -143,8 +137,7 @@ class BoardPainter:
             myextension = self.pieceimages_extension
             myfolder = self.pieceimages_folder
 
-        piecename = self.MyPieceNameHandler.lookup_piecename_by_symbol(symbol2)
-        symbol_found = self._symbol_found(psymbol=symbol2, ppiecename=piecename)
+        symbol_found, piecename = self.MyPieceNameHandler.lookup_piecename_by_symbol(symbol2)
 
         x = i * self.piecesize
         x += self.edgesize_left

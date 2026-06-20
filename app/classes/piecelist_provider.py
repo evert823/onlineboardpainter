@@ -9,10 +9,10 @@ class PieceListProvider:
 
     def load_piece_definitions(self):
         self.MyPieceNameHandler.load_piece_definitions(filename=self.piecedefinitions_loc)
-        mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("K")
-        assert mytest == "King"
-        mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol(".")
-        assert mytest == ""
+        symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("K")
+        assert symbol_found == True and mytest == "King"
+        symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol(".")
+        assert symbol_found == True and mytest == ""
 
     def provide_piecelist_context_chess(self, theme="green"):
         dict2 = {"piecedefinitions": []}

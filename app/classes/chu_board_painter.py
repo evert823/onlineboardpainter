@@ -31,12 +31,12 @@ class ChuBoardPainter:
 
     def load_piece_definitions(self):
         self.MyPieceNameHandler.load_piece_definitions(filename="/home/administrator/onlineboardpainter/resources/piecedefinitions/chushogipiecedefinitions.csv")
-        mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("K")
-        assert mytest == "King"
-        mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("L")
-        assert mytest == "Lance"
-        mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol(".")
-        assert mytest == ""
+        symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("K")
+        assert symbol_found == True and mytest == "King"
+        symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol("L")
+        assert symbol_found == True and mytest == "Lance"
+        symbol_found, mytest = self.MyPieceNameHandler.lookup_piecename_by_symbol(".")
+        assert symbol_found == True and mytest == ""
 
     def load_file(self, pfilename):
         self.MyChessPosition.load_from_json(pfilename)
@@ -111,18 +111,13 @@ class ChuBoardPainter:
             y_end = self.edgesize_top + self.MyChessPosition.boardheight * self.pieceheight
             draw.line([(x, y_start), (x, y_end)], fill="black", width=1)
 
-
-    def _symbol_found(self, psymbol: str, ppiecename: str):
-        teststring = psymbol.replace("-", "").replace(" ", "").replace(".", "").replace("*", "")
-        if teststring != "" and ppiecename == "":
-            return False
-        return True
-
     def paste_piece_image(self, j: int, i: int):
         mysquare = self.MyChessPosition.squares[j][i]
         #For Chu Shogi the square content should end with asterisk (*) to indicate a promoted piece
         #E.g. B = initial Bishop, B* is FL promoted to Bishop
-        if mysquare[0] == "-":
+        if mysquare == "":
+            pass
+        elif mysquare[0] == "-":
             piececolour = "gote"
         else:
             piececolour = "sente"
@@ -134,8 +129,7 @@ class ChuBoardPainter:
         
         mysymbol = mysquare.replace("-", "").replace("*", "")
 
-        piecename = self.MyPieceNameHandler.lookup_piecename_by_symbol(mysymbol)
-        symbol_found = self._symbol_found(psymbol=mysquare, ppiecename=piecename)
+        symbol_found, piecename = self.MyPieceNameHandler.lookup_piecename_by_symbol(mysymbol)
 
         x = i * self.piecewidth
         x += self.edgesize_left

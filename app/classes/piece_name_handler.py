@@ -14,7 +14,16 @@ class PieceNameHandler:
                 self.piecedict["piecedefinitions"].append(mydict)
 
     def lookup_piecename_by_symbol(self, psymbol: str) -> str:
+        """
+        Returns tuple symbol_found, piecename
+        symbol_found False indicates an issue with non-trivial input that was not defined
+        dot and whitespace indicate a vacant square
+        """
         for item in self.piecedict["piecedefinitions"]:
             if item["piecesymbol"] == psymbol:
-                return item["piecename"]
-        return ""
+                return True, item["piecename"]
+        if psymbol.strip() == "":
+            return True, ""
+        if psymbol.strip() == ".":
+            return True, ""
+        return False, ""
