@@ -66,21 +66,45 @@ class FormatDispatcher:
         self.MyFENHandler.load_piece_definitions()
         self.MyFEN4Handler.load_piece_definitions()
 
-    def make_board(self, inputtext: str, context: str, theme: str):
+    def make_board(self, inputtext: str, context: str, theme: str,
+                   jsonfilepath: str, imagefilepath: str):
         self.prepare_piecedefinitions(context=context)
-        inputformat = self.classify_input(inputtext=input.text)
+        inputformat = self.classify_input(inputtext=inputtext)
         if inputformat == "JSON":
             myjson = inputtext
         if inputformat == "JSON4":
             myjson = inputtext
         if inputformat == "FEN":
-            myjson = self.MyFENHandler.convert_fen_to_JSON(fentext=inputtext)
+            a = self.MyFENHandler.convert_fen_to_JSON(fentext=inputtext)
+            assert a[0] == 0
+            myjson = a[1]
         if inputformat == "FEN4":
-            myjson = self.MyFEN4Handler.convert_fen_to_JSON(fentext=inputtext)
+            a = self.MyFEN4Handler.convert_fen_to_JSON(fentext=inputtext)
+            assert a[0] == 0
+            myjson = a[1]
+
+        file2 = open(jsonfilepath, "w",  encoding="utf-8")
+        file2.write(myjson)
+        file2.close()
+
         if context == "chess":
-            pass
-        if context == "shogi":
-            pass
+            if theme == "classicwood":
+                self.MyBoardPainter.pieceimages_folder = "pieceimages_classicwood"
+                self.MyBoardPainter.pieceimages_extension = "png"
+                self.MyBoardPainter.a1_is_white = False
+            elif theme == "green":
+                self.MyBoardPainter.pieceimages_folder = "pieceimages"
+                self.MyBoardPainter.pieceimages_extension = "jpg"
+                self.MyBoardPainter.a1_is_white = True
+            self.MyBoardPainter.load_file(jsonfilepath)
+            self.MyBoardPainter.create_board_image_and_save(imagefilepath)
+        elif context == "shogi":
+            if theme == "set1":
+                self.MyChuBoardPainter.pieceimages_folder = os.path.join(config.RESOURCES_ROOT, "shogi_set1")
+            elif theme == "set2":
+                self.MyChuBoardPainter.pieceimages_folder = os.path.join(config.RESOURCES_ROOT, "shogi_set2")
+            self.MyChuBoardPainter.load_file(jsonfilepath)
+            self.MyChuBoardPainter.create_board_image_and_save(imagefilepath)
 
     def convert_format(self, inputtext: str, context: str, pieceID_separation_strategy: str):
         self.prepare_piecedefinitions(context=context)
