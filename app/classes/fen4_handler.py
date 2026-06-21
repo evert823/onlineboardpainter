@@ -151,6 +151,8 @@ class FEN4Handler:
                 confirmedpiecepart = item["piecesymbol"]
         
         if colorpart == '':
+            if piecepart == confirmedpiecepart.lower():
+                return '-' + confirmedpiecepart
             return confirmedpiecepart
 
         return colorpart + '.' + confirmedpiecepart
