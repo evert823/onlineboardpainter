@@ -15,13 +15,6 @@
         <br>
         <form id="convertForm" onsubmit="return false;">
             <div class="row">
-                <label for="direction">Direction:</label>
-                <select id="direction" name="direction">
-                    <option value="fen2json">FEN to JSON</option>
-                    <option value="json2fen">JSON to FEN</option>
-                </select>
-            </div>
-            <div class="row">
                 <label for="context">Context:</label>
                 <select id="context" name="context">
                     <option value="chess">Chess</option>
@@ -36,14 +29,14 @@
                 </select>
             </div>
             <div class="row">
-                <label for="inputText" id="inputLabel">Input (FEN):</label>
+                <label for="inputText" id="inputLabel">Input (FEN or JSON):</label>
                 <textarea id="inputText" name="inputText" placeholder="Enter FEN or JSON here"></textarea>
             </div>
             <div class="row">
                 <button type="button" onclick="convert()">Convert</button>
             </div>
             <div class="row output-row">
-                <label for="outputText" id="outputLabel">Output (JSON):</label>
+                <label for="outputText" id="outputLabel">Output (JSON or FEN):</label>
                 <button type="button" id="copyBtn" class="copy-btn" title="Copy to clipboard">
                     <!-- SVG copy icon -->
                     <svg id="copyIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -60,26 +53,12 @@
         </form>
     </div>
     <script>
-        const directionSelect = document.getElementById('direction');
         const inputLabel = document.getElementById('inputLabel');
         const outputLabel = document.getElementById('outputLabel');
-
-        directionSelect.addEventListener('change', function() {
-            if (this.value === 'fen2json') {
-                inputLabel.textContent = 'Input (FEN):';
-                outputLabel.textContent = 'Output (JSON):';
-                document.getElementById('inputText').placeholder = 'Enter FEN here';
-            } else {
-                inputLabel.textContent = 'Input (JSON):';
-                outputLabel.textContent = 'Output (FEN):';
-                document.getElementById('inputText').placeholder = 'Enter JSON here';
-            }
-        });
 
         async function convert() {
             document.getElementById('message').textContent = '';
             const inputText = document.getElementById('inputText').value;
-            const direction = document.getElementById('direction').value;
             const context = document.getElementById('context').value;
             const pieceID_separation_strategy = document.getElementById('pieceID_separation_strategy').value;
 
@@ -90,7 +69,6 @@
 
             const payload = {
                 text: inputText,
-                direction: direction,
                 context: context,
                 pieceID_separation_strategy: pieceID_separation_strategy
             };

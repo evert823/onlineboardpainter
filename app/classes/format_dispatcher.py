@@ -75,13 +75,11 @@ class FormatDispatcher:
         if inputformat == "JSON4":
             myjson = inputtext
         if inputformat == "FEN":
-            a = self.MyFENHandler.convert_fen_to_JSON(fentext=inputtext)
-            assert a[0] == 0
-            myjson = a[1]
+            rc, myjson = self.MyFENHandler.convert_fen_to_JSON(fentext=inputtext)
+            assert rc == 0
         if inputformat == "FEN4":
-            a = self.MyFEN4Handler.convert_fen_to_JSON(fentext=inputtext)
-            assert a[0] == 0
-            myjson = a[1]
+            rc, myjson = self.MyFEN4Handler.convert_fen_to_JSON(fentext=inputtext)
+            assert rc == 0
 
         file2 = open(jsonfilepath, "w",  encoding="utf-8")
         file2.write(myjson)
@@ -118,10 +116,12 @@ class FormatDispatcher:
             myfen = self.MyFEN4Handler.convert_JSON_to_fen(jsontext=inputtext)
             return myfen
         if inputformat == "FEN":
-            myjson = self.MyFENHandler.convert_fen_to_JSON(fentext=inputtext)
+            rc, myjson = self.MyFENHandler.convert_fen_to_JSON(fentext=inputtext)
+            assert rc == 0
             return myjson
         if inputformat == "FEN4":
-            myjson = self.MyFEN4Handler.convert_fen_to_JSON(fentext=inputtext)
+            rc, myjson = self.MyFEN4Handler.convert_fen_to_JSON(fentext=inputtext)
+            assert rc == 0
             return myjson
 
     def classify_input(self, inputtext: str):
