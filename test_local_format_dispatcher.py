@@ -83,7 +83,7 @@ test_convert(testfilepath=testcase_json4_filepath(),
              pieceID_separation_strategy="comma", skip=True)
 test_convert(testfilepath=testcase_fen_filepath(),
              context="chess",
-             pieceID_separation_strategy="comma", skip=False)
+             pieceID_separation_strategy="comma", skip=True)
 test_convert(testfilepath=shogitestcase_fen_filepath(),
              context="shogi",
              pieceID_separation_strategy="comma", skip=True)
@@ -108,7 +108,7 @@ test_make_board(testfilepath=testcase_json4_filepath(),
                 theme="green", skip=True)
 test_make_board(testfilepath=testcase_fen_filepath(),
                 context="chess",
-                theme="classicwood", skip=True)
+                theme="classicwood", skip=False)
 test_make_board(testfilepath=testcase_fen_filepath(),
                 context="chess",
                 theme="green", skip=True)

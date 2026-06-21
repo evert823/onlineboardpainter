@@ -70,17 +70,12 @@ class FEN4Handler:
             return symbol.upper()
         else:
             a = symbol.split('.')
-            if a[0] == 'yw':
-                s = 'y'
-            elif a[0] == 'gn':
-                s = 'g'
-            elif a[0] == 'rd':
-                s = 'r'
-            elif a[0] == 'be':
-                s = 'b'
+            if a[0] in ['b', 'g', 'r', 'y', 'be', 'gn', 'rd', 'yw']:
+                s = a[0][0] + a[1].upper()
+            elif a[0] in ['bk']:
+                s = a[1].lower()
             else:
-                s = a[0].lower()
-            s += a[1].upper()
+                s = a[1].upper()
             return s
 
     def convert_fen_to_JSON(self, fentext):
@@ -140,17 +135,8 @@ class FEN4Handler:
 
     def parse_one_piece_from_FEN4(self, fenpiece):
         if len(fenpiece) > 1:
-            if fenpiece[0] == "r":
-                colorpart = 'rd'
-                piecepart = fenpiece[1:]
-            elif fenpiece[0] == "b":
-                colorpart = 'be'
-                piecepart = fenpiece[1:]
-            elif fenpiece[0] == "y":
-                colorpart = 'yw'
-                piecepart = fenpiece[1:]
-            elif fenpiece[0] == "g":
-                colorpart = 'gn'
+            if fenpiece[0] in ["r", "b", "y", "g"]:
+                colorpart = fenpiece[0]
                 piecepart = fenpiece[1:]
             else:
                 colorpart = ''
