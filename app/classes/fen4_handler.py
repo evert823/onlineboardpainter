@@ -43,7 +43,7 @@ class FEN4Handler:
             if fenpart.endswith(","):
                 fenpart = fenpart[:-1]
             fenparts.append(fenpart)
-        fen = "\n".join(fenparts)
+        fen = "/\n".join(fenparts)
 
         line0 = ""
         if self.MyChessPosition.colourtomove == 1:
